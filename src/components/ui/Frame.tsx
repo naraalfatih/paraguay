@@ -61,7 +61,14 @@ export function Frame({
   const asset = getImage(image);
 
   return (
-    <div className={cn("grain relative overflow-hidden bg-night-2", ratios[ratio], className)}>
+    <div
+      className={cn(
+        "grain overflow-hidden bg-night-2",
+        // "fill" frames are absolutely positioned; every other ratio sizes itself.
+        ratio === "fill" ? ratios.fill : cn("relative", ratios[ratio]),
+        className,
+      )}
+    >
       {offline ? (
         <div aria-hidden="true" className="absolute inset-0 grid place-items-center">
           <Ornament className="size-24 text-cream/10" />
