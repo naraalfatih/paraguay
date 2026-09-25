@@ -12,13 +12,15 @@ type PageHeroProps = {
   dek?: React.ReactNode;
   crumbs?: Crumb[];
   size?: "full" | "tall";
+  /** Overrides the looping video registered for this image. */
+  video?: string;
   children?: React.ReactNode;
 };
 
 /** Full-bleed opening "title sequence" used at the top of every page. */
-export function PageHero({ image, eyebrow, title, dek, crumbs, size = "tall", children }: PageHeroProps) {
+export function PageHero({ image, eyebrow, title, dek, crumbs, size = "tall", video: videoOverride, children }: PageHeroProps) {
   const asset = getImage(image);
-  const video = videos[image];
+  const video = videoOverride ?? videos[image];
   return (
     <section
       className={cn(

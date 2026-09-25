@@ -3,6 +3,7 @@ import Link from "next/link";
 import { destinations, getDestination } from "@/data/destinations";
 import { cocido, dishes } from "@/data/pages/food";
 import { eras } from "@/data/pages/history";
+import { homeFilm } from "@/data/images";
 import { home } from "@/data/pages/home";
 import { itineraries } from "@/data/pages/travel";
 import { regions } from "@/data/regions";
@@ -37,6 +38,7 @@ export default function HomePage() {
       {/* 1 · Title sequence */}
       <PageHero
         image="red-earth-road"
+        video={homeFilm}
         size="full"
         eyebrow={
           <>

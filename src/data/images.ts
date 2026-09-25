@@ -303,3 +303,6 @@ export const videos: Partial<Record<ImageId, string>> = {
   terere: `${CDN}/hf_20260925_035049_04b9cc70-bc0d-4bc2-b0ae-dc314e088149.mp4`,
   harp: `${CDN}/hf_20260925_035349_5b6ba3f5-afe7-4ab1-96be-fc0069e6926d.mp4`,
 };
+
+/** 15-second multi-shot film about Paraguay for the home hero (Kling v3, silent; opens and closes on "red-earth-road"). */
+export const homeFilm = `${CDN}/hf_20260925_043656_0c5dc100-ed5c-4dea-8f43-e7291fed629e.mp4`;
