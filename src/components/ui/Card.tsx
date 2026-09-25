@@ -10,7 +10,7 @@ type CardProps = {
   eyebrow?: string;
   excerpt?: string;
   image?: ImageId;
-  ratio?: "portrait" | "landscape" | "wide";
+  ratio?: "portrait" | "landscape" | "wide" | "square";
   /** "stacked": image above text. "overlay": text set over the image (cinematic tile). */
   variant?: "stacked" | "overlay";
   headingLevel?: "h2" | "h3";

@@ -56,6 +56,9 @@ export interface Chapter {
 
 export interface TopicPage {
   path: string;
+  /** Short name used in breadcrumbs. */
+  label: string;
+  /** Hero kicker above the title. */
   eyebrow: string;
   title: string;
   dek: string;
@@ -65,4 +68,30 @@ export interface TopicPage {
   intro: RichText[];
   chapters: Chapter[];
   sources: SourceId[];
+}
+
+export interface Dish {
+  id: string;
+  name: string;
+  kind: string;
+  image: ImageId;
+  what: RichText;
+  context: RichText;
+}
+
+export interface Era {
+  id: string;
+  period: string;
+  title: string;
+  summary: string;
+  facts: RichText[];
+  interpretations: RichText[];
+}
+
+export interface Itinerary {
+  id: string;
+  title: string;
+  length: string;
+  summary: string;
+  days: { label: string; text: RichText }[];
 }

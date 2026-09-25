@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { footerNav, mainNav, site } from "@/data/site";
 import { Ornament } from "@/components/ui/Ornament";
+import { formatReviewed } from "@/lib/date";
 import { Container } from "./Container";
 
 export function SiteFooter() {
@@ -51,19 +52,10 @@ export function SiteFooter() {
             {formatReviewed(site.lastReviewed)}. Always check official sources before you travel.
           </p>
           <p className="lg:col-span-5 lg:text-right">
-            © {new Date().getFullYear()} {site.title}. Independent guide, not affiliated with any government agency.
+            A university project for {site.occasion}. Not affiliated with the United Nations or any government.
           </p>
         </div>
       </Container>
     </footer>
   );
-}
-
-export function formatReviewed(yyyyMm: string) {
-  const [y, m] = yyyyMm.split("-").map(Number);
-  return new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString("en-US", {
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
 }

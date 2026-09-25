@@ -19,6 +19,10 @@ export const imageSizes = {
   twoThirds: "(min-width: 1024px) 66vw, 100vw",
 } as const;
 
+/** Top and bottom darkening so the header and hero text stay legible over any image. */
+export const heroScrim =
+  "absolute inset-0 bg-[linear-gradient(to_bottom,rgb(13_17_15/0.7)_0%,rgb(13_17_15/0)_22%,rgb(13_17_15/0)_45%,rgb(13_17_15/0.9)_100%)]";
+
 /** Set NEXT_PUBLIC_OFFLINE_IMAGES=1 to render placeholder art when the image CDN is unreachable. */
 const offline = process.env.NEXT_PUBLIC_OFFLINE_IMAGES === "1";
 
@@ -33,6 +37,8 @@ type FrameProps = {
   /** Slow scale-in on load (hero images). */
   settle?: boolean;
   zoomOnHover?: boolean;
+  /** "contain" shows the whole image (lightbox); default crops to fill. */
+  fit?: "cover" | "contain";
   alt?: string;
   className?: string;
   imgClassName?: string;
@@ -47,6 +53,7 @@ export function Frame({
   scrim = "none",
   settle = false,
   zoomOnHover = false,
+  fit = "cover",
   alt,
   className,
   imgClassName,
@@ -69,7 +76,7 @@ export function Frame({
           fetchPriority={eager ? "high" : undefined}
           style={asset.focus ? { objectPosition: asset.focus } : undefined}
           className={cn(
-            "object-cover",
+            fit === "cover" ? "object-cover" : "object-contain",
             settle && "motion-safe:animate-settle",
             zoomOnHover && "transition-transform duration-[1.2s] ease-cinema group-hover:scale-[1.04]",
             imgClassName,
@@ -79,12 +86,7 @@ export function Frame({
       {scrim === "bottom" && (
         <div aria-hidden="true" className="absolute inset-0 bg-linear-to-t from-night/85 via-night/25 to-transparent" />
       )}
-      {scrim === "hero" && (
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(13_17_15/0.7)_0%,rgb(13_17_15/0)_22%,rgb(13_17_15/0)_45%,rgb(13_17_15/0.9)_100%)]"
-        />
-      )}
+      {scrim === "hero" && <div aria-hidden="true" className={heroScrim} />}
     </div>
   );
 }

@@ -135,14 +135,23 @@ export function DestinationExplorer({ items, regions, experiences }: Props) {
             const inRegion = items.filter((d) => d.region === r.id);
             if (inRegion.length === 0) return null;
             return (
-              <section key={r.id} aria-labelledby={`region-${r.id}`} className="border-t border-line pt-10">
-                <div className="grid gap-4 lg:grid-cols-12">
-                  <h2 id={`region-${r.id}`} className="text-3xl lg:col-span-5">
-                    {r.label}
-                  </h2>
-                  <p className="font-sans text-muted lg:col-span-5 lg:col-start-8 lg:pt-3">{r.description}</p>
+              <section
+                key={r.id}
+                aria-labelledby={`region-${r.id}`}
+                className="grid gap-10 border-t border-line pt-10 lg:grid-cols-12"
+              >
+                <div className="lg:col-span-3">
+                  <div className="lg:sticky lg:top-[calc(var(--spacing-header)+2rem)]">
+                    <p className="eyebrow text-accent tabular-nums">
+                      {String(inRegion.length).padStart(2, "0")} {inRegion.length === 1 ? "place" : "places"}
+                    </p>
+                    <h2 id={`region-${r.id}`} className="mt-3 text-3xl">
+                      {r.label}
+                    </h2>
+                    <p className="mt-3 max-w-xs font-sans text-sm text-muted">{r.description}</p>
+                  </div>
                 </div>
-                <div className="mt-10 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">{inRegion.map(card)}</div>
+                <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:col-span-9 lg:grid-cols-3">{inRegion.map(card)}</div>
               </section>
             );
           })}

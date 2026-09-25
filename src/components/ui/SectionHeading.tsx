@@ -50,7 +50,7 @@ export function SectionHeading({
         {dek && <p className="mt-5 max-w-2xl text-lg text-muted">{dek}</p>}
       </div>
       {action && (
-        <ButtonLink href={action.href} variant="text" className="shrink-0">
+        <ButtonLink href={action.href} variant="text" className="shrink-0 self-start md:self-auto">
           {action.label}
         </ButtonLink>
       )}

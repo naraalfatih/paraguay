@@ -62,14 +62,20 @@ export function MobileNav({ items, secondary }: { items: NavItem[]; secondary: N
                       href={item.href}
                       onClick={close}
                       aria-current={active ? "page" : undefined}
+                      aria-label={item.label}
+                      aria-describedby={`mnav-desc-${i}`}
                       className="group flex items-baseline gap-4 py-4"
                     >
-                      <span className="eyebrow w-6 text-muted">{String(i + 1).padStart(2, "0")}</span>
+                      <span aria-hidden="true" className="eyebrow w-6 text-muted">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
                       <span>
                         <span className="block font-serif text-3xl group-aria-[current=page]:italic group-aria-[current=page]:text-accent">
                           {item.label}
                         </span>
-                        <span className="mt-1 block font-sans text-sm text-muted">{item.description}</span>
+                        <span id={`mnav-desc-${i}`} className="mt-1 block font-sans text-sm text-muted">
+                          {item.description}
+                        </span>
                       </span>
                     </Link>
                   </li>

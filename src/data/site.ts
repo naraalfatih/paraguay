@@ -3,9 +3,10 @@ const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 export const site = {
   name: "Paraguay",
   title: "Paraguay — Land, Culture & Travel",
-  tagline: "An editorial guide to the heart of South America",
+  tagline: "A cinematic portrait of the heart of South America",
   description:
-    "An independent, carefully sourced guide to Paraguay: destinations, Guaraní culture, food, nature, history and practical travel advice.",
+    "Discover Paraguay: its landscapes, destinations, Guaraní culture, food, nature and history. A university project for United Nations Day.",
+  occasion: "United Nations Day · 24 October 2026",
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (vercelUrl ? `https://${vercelUrl}` : "http://localhost:3000"),
@@ -44,16 +45,16 @@ export const mainNav: NavItem[] = [
   },
   {
     href: "/travel-guide",
-    label: "Travel Guide",
-    description: "Seasons, money, getting around and itineraries.",
+    label: "Travel",
+    description: "When to go, getting around, itineraries and phrases.",
   },
 ];
 
 export const footerNav: NavItem[] = [
   {
     href: "/about",
-    label: "About & sources",
-    description: "How this guide is researched, and image credits.",
+    label: "About this project",
+    description: "Why this site exists, our sources and image credits.",
   },
 ];
 

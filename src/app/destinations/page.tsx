@@ -29,7 +29,7 @@ export default function DestinationsPage() {
     <>
       <PageHero
         image="river-meander"
-        eyebrow="Destinations"
+        eyebrow={`${destinations.length} places to begin`}
         title={
           <>
             Where to go, <em className="text-accent">region by region</em>

@@ -1,11 +1,12 @@
 # Paraguay Website — Architecture
 
-> **Update (Sep 2026, work in progress):** Three decisions have changed since this document was written.
-> - **Cinematic direction.** The site is now dark-first: night surfaces, with cream "paper" bands for reading. Tokens in `src/app/globals.css` are authoritative where they differ from §6.
-> - **AI imagery.** Images are AI illustrations (Higgsfield) served from the generator's CDN via `src/data/images.ts`. Specific landmarks are never depicted.
-> - **Pending brief change.** The owner has paused the build to rework the brief around **United Nations Day** (24 October).
+> **Final state (v1, Sep 2026).** Where this document and the code differ, the code and `CLAUDE.md` win. Key changes from the original plan:
+> - **Project:** a university project for **United Nations Day**, for a general audience. UN Day is mentioned by name only.
+> - **Look:** a cinematic, dark-first visual direction. The tokens in `src/app/globals.css` supersede §6.2.
+> - **Images:** AI illustrations and a silent hero loop generated with Higgsfield, served from its CDN via `src/data/images.ts`. No specific landmark is depicted.
+> - **Pages:** all built: home, destinations and 11 destination pages, culture, food, nature, history (interactive timeline), travel (called "Travel", at `/travel-guide`) and about (sources and image credits).
 
-**Status:** Approved design for v1. Phase 1 (foundation) is implemented.
+**Status:** v1 implemented (all pages). See the note above for changes from the original plan.
 **Stack (verified Sep 2026):**
 - Next.js 16 (App Router), React 19, TypeScript
 - Tailwind CSS 4

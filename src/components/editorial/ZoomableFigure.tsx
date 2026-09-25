@@ -1,11 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
 import { getImage, type ImageId } from "@/data/images";
 import { Frame, FrameCaption, imageSizes } from "@/components/ui/Frame";
 import { CloseIcon, ExpandIcon } from "@/components/ui/icons";
-import { cn } from "@/lib/cn";
 
 type ZoomableFigureProps = {
   image: ImageId;
@@ -61,13 +59,7 @@ export function ZoomableFigure({ image, caption, ratio = "landscape", sizes = im
             </button>
           </div>
           <div className="relative min-h-0 flex-1">
-            <Image
-              src={asset.src}
-              alt={asset.alt}
-              fill
-              sizes="100vw"
-              className={cn("object-contain")}
-            />
+            <Frame image={image} ratio="fill" fit="contain" sizes="100vw" className="bg-transparent" />
           </div>
           <FrameCaption image={image} text={caption} className="mx-auto max-w-3xl justify-center pt-3 text-center" />
         </div>

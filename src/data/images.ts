@@ -3,8 +3,8 @@
  *
  * All current images are AI-generated illustrations (Higgsfield, GPT Image 2.5): moods of
  * landscapes, food and crafts, never presented as photographs of a specific named place.
- * They are served from the generator's CDN. `npm run images:localize` downloads them into
- * public/images/ and rewrites `src` to local paths (needs network access to the CDN).
+ * They are served from the generator's CDN (allowed in next.config.ts `remotePatterns`). To self-host,
+ * download each file into public/images/ and change `src` to "/images/<file>"; nothing else changes.
  */
 const CDN = "https://d8j0ntlcm91z4.cloudfront.net/user_3IcnjIyrilAoNvFlEquouraatLL";
 
@@ -262,3 +262,10 @@ export function getImage(id: ImageId): ImageAsset {
 export function creditLine(asset: ImageAsset) {
   return asset.credit === "ai" ? "AI-generated illustration" : `${asset.credit.text} · ${asset.credit.license}`;
 }
+
+/** Silent, seamless 5-second loop animated from "red-earth-road" (AI-generated, Seedance 2.5). */
+export const heroVideo = {
+  src: `${CDN}/hf_20260925_031715_80a1fd4d-94fa-4e76-a852-614d786c12ff.mp4`,
+  poster: "red-earth-road" as ImageId,
+  caption: "Breeze over the red-earth countryside",
+};

@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps<"/destinations/[slu
   const { slug } = await params;
   const d = getDestination(slug);
   if (!d) return {};
-  return pageMetadata({ title: `${d.name}, Paraguay`, description: d.summary, path: `/destinations/${d.slug}` });
+  return pageMetadata({ title: d.name, description: d.summary, path: `/destinations/${d.slug}` });
 }
 
 export default async function DestinationPage({ params }: PageProps<"/destinations/[slug]">) {
