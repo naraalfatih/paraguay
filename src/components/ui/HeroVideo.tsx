@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { cn } from "@/lib/cn";
 
 const QUERY = "(prefers-reduced-motion: no-preference)";
@@ -11,65 +11,78 @@ function subscribe(onChange: () => void) {
   return () => mql.removeEventListener("change", onChange);
 }
 
-function canPlay() {
+/** "auto" = may autoplay; "manual" = reduced motion or data saver, so wait for a click. */
+function playMode() {
   const nav = navigator as Navigator & { connection?: { saveData?: boolean } };
-  return window.matchMedia(QUERY).matches && !nav.connection?.saveData;
+  return window.matchMedia(QUERY).matches && !nav.connection?.saveData ? "auto" : "manual";
 }
 
 /**
- * Ambient background loop layered over the hero's still image.
- * Skipped with reduced motion or data saver; can be paused (WCAG 2.2.2).
+ * Silent background film layered over the hero's still image.
+ * Autoplays when allowed. With reduced motion, data saver or blocked autoplay
+ * (e.g. low-power mode) it shows a "Play film" button instead. Always pausable (WCAG 2.2.2).
  */
 export function HeroVideo({ src }: { src: string }) {
-  const enabled = useSyncExternalStore(subscribe, canPlay, () => false);
+  const mode = useSyncExternalStore(subscribe, playMode, () => null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [ready, setReady] = useState(false);
-  const [paused, setPaused] = useState(false);
+  const [started, setStarted] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [blocked, setBlocked] = useState(false);
 
-  if (!enabled || process.env.NEXT_PUBLIC_OFFLINE_IMAGES === "1") return null;
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || mode !== "auto") return;
+    v.play().catch(() => setBlocked(true));
+  }, [mode, src]);
+
+  if (!mode || process.env.NEXT_PUBLIC_OFFLINE_IMAGES === "1") return null;
 
   const toggle = () => {
     const v = videoRef.current;
     if (!v) return;
     if (v.paused) {
-      void v.play();
-      setPaused(false);
+      v.play().catch(() => setBlocked(true));
     } else {
       v.pause();
-      setPaused(true);
     }
   };
+
+  const showButton = playing || started || mode === "manual" || blocked;
 
   return (
     <>
       <video
         ref={videoRef}
         src={src}
-        autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        autoPlay={mode === "auto"}
+        preload={mode === "auto" ? "auto" : "none"}
         aria-hidden="true"
         tabIndex={-1}
-        onCanPlay={() => setReady(true)}
-        onPlaying={() => setReady(true)}
+        onPlaying={() => {
+          setStarted(true);
+          setPlaying(true);
+          setBlocked(false);
+        }}
+        onPause={() => setPlaying(false)}
         className={cn(
           "absolute inset-0 -z-10 h-full w-full object-cover transition-opacity duration-[1.6s]",
-          ready ? "opacity-100" : "opacity-0",
+          started ? "opacity-100" : "opacity-0",
         )}
       />
-      {ready && (
+      {showButton && (
         <button
           type="button"
           onClick={toggle}
-          aria-pressed={paused}
-          className="eyebrow absolute top-[calc(var(--spacing-header)+1rem)] right-gutter z-10 inline-flex h-10 items-center gap-2 border border-cream/30 px-3 text-cream/80 hover:border-cream hover:text-cream"
+          aria-pressed={!playing}
+          className="eyebrow absolute top-[calc(var(--spacing-header)+1rem)] right-gutter z-10 inline-flex h-11 items-center gap-2 border border-cream/40 bg-night/40 px-4 text-cream hover:border-cream"
         >
           <span aria-hidden="true" className="text-[0.6rem]">
-            {paused ? "▶" : "❚❚"}
+            {playing ? "❚❚" : "▶"}
           </span>
-          {paused ? "Play motion" : "Pause motion"}
+          {playing ? "Pause film" : "Play film"}
         </button>
       )}
     </>

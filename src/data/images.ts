@@ -304,5 +304,8 @@ export const videos: Partial<Record<ImageId, string>> = {
   harp: `${CDN}/hf_20260925_035349_5b6ba3f5-afe7-4ab1-96be-fc0069e6926d.mp4`,
 };
 
-/** 15-second multi-shot film about Paraguay for the home hero (Kling v3, silent; opens and closes on "red-earth-road"). */
-export const homeFilm = `${CDN}/hf_20260925_043656_0c5dc100-ed5c-4dea-8f43-e7291fed629e.mp4`;
+/**
+ * 15-second multi-shot film about Paraguay for the home hero (Kling v3, silent; opens and closes on
+ * "red-earth-road"). Re-encoded for the web (1920×820 H.264, ~3.7 MB, faststart) from a 36 MB original.
+ */
+export const homeFilm = "https://d2ol7oe51mr4n9.cloudfront.net/user_3IcnjIyrilAoNvFlEquouraatLL/68fcf938-49d8-4fc2-a82d-171ea6dd8876.mp4";
