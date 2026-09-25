@@ -20,24 +20,27 @@ export function ZoomableFigure({ image, caption, ratio = "landscape", sizes = im
   const label = caption ?? asset.caption;
 
   return (
-    <figure className={className}>
-      <button
-        type="button"
-        onClick={() => dialogRef.current?.showModal()}
-        aria-haspopup="dialog"
-        aria-label={`Enlarge image: ${label}`}
-        className="group relative block w-full cursor-zoom-in"
-      >
-        <Frame image={image} ratio={ratio} sizes={sizes} zoomOnHover />
-        <span
-          aria-hidden="true"
-          className="absolute top-3 right-3 z-10 grid size-10 place-items-center bg-night/70 text-cream opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+    <>
+      <figure className={className}>
+        <button
+          type="button"
+          onClick={() => dialogRef.current?.showModal()}
+          aria-haspopup="dialog"
+          aria-label={`Enlarge image: ${label}`}
+          className="group relative block w-full cursor-zoom-in"
         >
-          <ExpandIcon />
-        </span>
-      </button>
-      <FrameCaption image={image} text={caption} />
+          <Frame image={image} ratio={ratio} sizes={sizes} zoomOnHover />
+          <span
+            aria-hidden="true"
+            className="absolute top-3 right-3 z-10 grid size-10 place-items-center bg-night/70 text-cream opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+          >
+            <ExpandIcon />
+          </span>
+        </button>
+        <FrameCaption image={image} text={caption} />
+      </figure>
 
+      {/* Outside the <figure>, so its <figcaption> stays the last child. */}
       <dialog
         ref={dialogRef}
         aria-label={label}
@@ -61,9 +64,9 @@ export function ZoomableFigure({ image, caption, ratio = "landscape", sizes = im
           <div className="relative min-h-0 flex-1">
             <Frame image={image} ratio="fill" fit="contain" sizes="100vw" className="bg-transparent" />
           </div>
-          <FrameCaption image={image} text={caption} className="mx-auto max-w-3xl justify-center pt-3 text-center" />
+          <FrameCaption as="p" image={image} text={caption} className="mx-auto max-w-3xl justify-center pt-3 text-center" />
         </div>
       </dialog>
-    </figure>
+    </>
   );
 }

@@ -292,20 +292,24 @@ export function creditLine(asset: ImageAsset) {
   return asset.credit === "ai" ? null : `${asset.credit.text} · ${asset.credit.license}`;
 }
 
+/** Web-encoded hero videos (H.264 High, 8-bit, faststart, no audio track), re-hosted on the media CDN. */
+const MEDIA = "https://d2ol7oe51mr4n9.cloudfront.net/user_3IcnjIyrilAoNvFlEquouraatLL";
+
 /**
- * Silent, seamless 5-second loops (AI-generated with Seedance 2.5 from the matching still).
+ * Silent, seamless 5-second loops (AI-generated with Seedance 2.5 from the matching still), re-encoded
+ * from 10-bit HEVC to 1920×824 H.264 (~0.8–1.1 MB each) so every browser can play them.
  * Any PageHero whose image has an entry here plays the video over the still.
  */
 export const videos: Partial<Record<ImageId, string>> = {
-  "red-earth-road": `${CDN}/hf_20260925_031715_80a1fd4d-94fa-4e76-a852-614d786c12ff.mp4`,
-  "river-meander": `${CDN}/hf_20260925_035050_0d43f57f-b236-457f-a586-3901cd28fc27.mp4`,
-  "wetland-dawn": `${CDN}/hf_20260925_035049_684f9184-1c3b-415d-88d7-60c73233e31c.mp4`,
-  terere: `${CDN}/hf_20260925_035049_04b9cc70-bc0d-4bc2-b0ae-dc314e088149.mp4`,
-  harp: `${CDN}/hf_20260925_035349_5b6ba3f5-afe7-4ab1-96be-fc0069e6926d.mp4`,
+  "red-earth-road": `${MEDIA}/ed47913c-deda-4445-8a5c-48441912692f.mp4`,
+  "river-meander": `${MEDIA}/14c1ef4a-8381-4376-a51e-46a2b4e3e39d.mp4`,
+  "wetland-dawn": `${MEDIA}/c7639c90-2468-4c0b-8ac9-6f9b49b3d659.mp4`,
+  terere: `${MEDIA}/7c6d6ecb-4c9e-4cdd-92c7-f27cc8670539.mp4`,
+  harp: `${MEDIA}/63399961-187c-47d6-8d90-6a195aad7a13.mp4`,
 };
 
 /**
  * 15-second multi-shot film about Paraguay for the home hero (Kling v3, silent; opens and closes on
  * "red-earth-road"). Re-encoded for the web (1920×820 H.264, ~3.7 MB, faststart) from a 36 MB original.
  */
-export const homeFilm = "https://d2ol7oe51mr4n9.cloudfront.net/user_3IcnjIyrilAoNvFlEquouraatLL/68fcf938-49d8-4fc2-a82d-171ea6dd8876.mp4";
+export const homeFilm = `${MEDIA}/68fcf938-49d8-4fc2-a82d-171ea6dd8876.mp4`;

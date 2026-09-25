@@ -31,7 +31,7 @@ export const saltosDelMonday: Destination = {
   ],
   context: [
     "The flow depends on recent rainfall, so the falls look different from one visit to the next.",
-    "Alto Paraná is one of the departments where, as of 2026, the U.S. advisory recommends increased caution. Visit during opening hours and keep valuables secure.",
+    "Alto Paraná is one of the departments where, as of 2026, the US travel advisory recommends increased caution. Visit during opening hours and keep valuables secure.",
   ],
   keyFacts: [
     { label: "Department", value: "Alto Paraná" },

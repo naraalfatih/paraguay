@@ -265,6 +265,11 @@ export const sources = {
     publisher: "Earthsight",
     url: "https://www.earthsight.org.uk/news/idm/ill-gotten-lands-deforestation-isolation-paraguays-gran-chaco",
   },
+  S65: {
+    title: "Admin 1 – States, Provinces (1:10m boundaries used for the maps)",
+    publisher: "Natural Earth (public domain)",
+    url: "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/",
+  },
 } as const satisfies Record<string, { title: string; publisher: string; url: string }>;
 
 export type SourceId = keyof typeof sources;

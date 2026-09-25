@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { destinations, getDestination, getRelated } from "@/data/destinations";
 import { getImage } from "@/data/images";
+import { destinationSections as copy } from "@/data/pages/destinations";
 import { regions } from "@/data/regions";
+import { mapLegend } from "@/data/site";
 import { KeyFacts } from "@/components/editorial/KeyFacts";
 import { Note } from "@/components/editorial/Note";
 import { RichText } from "@/components/editorial/RichText";
@@ -12,6 +14,7 @@ import { Section } from "@/components/layout/Section";
 import { Card } from "@/components/ui/Card";
 import { imageSizes } from "@/components/ui/Frame";
 import { PageHero } from "@/components/ui/PageHero";
+import { departmentNames, mapRegionOf, MapLegend, ParaguayMap } from "@/components/ui/ParaguayMap";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { destinationJsonLd } from "@/lib/jsonld";
@@ -38,6 +41,12 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
   const region = regions[d.region];
   const related = getRelated(d);
   const path = `/destinations/${d.slug}`;
+  const mapNames = departmentNames(d.department);
+  const mapRegion = mapRegionOf(mapNames);
+  const place =
+    d.department === "Capital District"
+      ? d.department
+      : `${d.department} ${mapNames.length > 1 ? "departments" : "department"}`;
 
   return (
     <>
@@ -67,7 +76,7 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
         <Container size="wide">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <SectionHeading id="overview" eyebrow="Overview" title="At a glance" size="md" />
+              <SectionHeading id="overview" eyebrow={copy.overview.eyebrow} title={copy.overview.title} size="md" />
               <div className="prose-editorial mt-8 max-w-prose">
                 {d.overview.map((p, i) => (
                   <p key={i} className={i === 0 ? "dropcap" : undefined}>
@@ -76,9 +85,20 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
                 ))}
               </div>
             </div>
-            <aside aria-label="Key facts" className="lg:col-span-4 lg:col-start-9">
+            <aside aria-label={copy.keyFacts} className="lg:col-span-4 lg:col-start-9">
               <div className="lg:sticky lg:top-[calc(var(--spacing-header)+2rem)]">
                 <KeyFacts items={d.keyFacts} columns={1} />
+                <figure className="mt-8 grid grid-cols-[7.5rem_1fr] items-center gap-6 border-t border-line pt-8">
+                  <ParaguayMap highlight={mapNames} label={`Map of Paraguay with ${place} highlighted`} />
+                  <figcaption>
+                    <p className="eyebrow text-muted">{mapLegend.where}</p>
+                    <p className="mt-2 text-lg leading-snug">
+                      {place}
+                      {mapRegion && `, ${mapLegend.inRegion[mapRegion]}`}
+                    </p>
+                    <MapLegend className="mt-4" />
+                  </figcaption>
+                </figure>
               </div>
             </aside>
           </div>
@@ -88,7 +108,7 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
       {/* Why visit */}
       <Section tone="night" labelledBy="why-visit">
         <Container size="wide">
-          <SectionHeading id="why-visit" eyebrow="Why visit" title="Reasons to go" />
+          <SectionHeading id="why-visit" eyebrow={copy.whyVisit.eyebrow} title={copy.whyVisit.title} />
           <ol className="mt-14 grid gap-10 md:grid-cols-3">
             {d.whyVisit.map((reason, i) => (
               <li key={i} className="reveal border-t border-line pt-6">
@@ -105,7 +125,7 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
       {/* Highlights */}
       <Section tone="paper" labelledBy="highlights">
         <Container size="wide">
-          <SectionHeading id="highlights" eyebrow="Highlights" title="What not to miss" />
+          <SectionHeading id="highlights" eyebrow={copy.highlights.eyebrow} title={copy.highlights.title} />
           <ul className="mt-12 grid gap-x-16 md:grid-cols-2">
             {d.highlights.map((h) => (
               <li key={h.title} className="reveal border-t border-line py-7">
@@ -124,7 +144,7 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
         <Container size="wide">
           <div className="grid gap-16 lg:grid-cols-12">
             <div className="lg:col-span-6">
-              <SectionHeading id="things-to-do" eyebrow="Activities" title="Things to do" size="md" />
+              <SectionHeading id="things-to-do" eyebrow={copy.activities.eyebrow} title={copy.activities.title} size="md" />
               <ul className="mt-8 space-y-5">
                 {d.activities.map((a, i) => (
                   <li key={i} className="relative pl-8 text-lg leading-snug">
@@ -135,7 +155,7 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
               </ul>
             </div>
             <div className="lg:col-span-5 lg:col-start-8">
-              <SectionHeading eyebrow="Useful context" title="Before you go" size="md" />
+              <SectionHeading eyebrow={copy.context.eyebrow} title={copy.context.title} size="md" />
               <div className="prose-editorial mt-8">
                 {d.context.map((p, i) => (
                   <p key={i}>
@@ -155,9 +175,9 @@ export default async function DestinationPage({ params }: PageProps<"/destinatio
           <Container size="wide">
             <SectionHeading
               id="related"
-              eyebrow="Continue the journey"
-              title="Nearby and related"
-              action={{ href: "/destinations", label: "All destinations" }}
+              eyebrow={copy.related.eyebrow}
+              title={copy.related.title}
+              action={{ href: "/destinations", label: copy.related.action }}
             />
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {related.map((r) => (

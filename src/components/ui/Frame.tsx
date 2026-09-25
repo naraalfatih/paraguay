@@ -19,9 +19,8 @@ export const imageSizes = {
   twoThirds: "(min-width: 1024px) 66vw, 100vw",
 } as const;
 
-/** Top and bottom darkening so the header and hero text stay legible over any image. */
-export const heroScrim =
-  "absolute inset-0 bg-[linear-gradient(to_bottom,rgb(11_21_16/0.7)_0%,rgb(11_21_16/0)_22%,rgb(11_21_16/0)_45%,rgb(11_21_16/0.9)_100%)]";
+/** Darkening under the header and behind the text column so hero text stays legible over any image. */
+export const heroScrim = "scrim-hero absolute inset-0";
 
 /** Set NEXT_PUBLIC_OFFLINE_IMAGES=1 to render placeholder art when the image CDN is unreachable. */
 const offline = process.env.NEXT_PUBLIC_OFFLINE_IMAGES === "1";
@@ -91,19 +90,29 @@ export function Frame({
         />
       )}
       {scrim === "bottom" && (
-        <div aria-hidden="true" className="absolute inset-0 bg-linear-to-t from-night/85 via-night/25 to-transparent" />
+        <div aria-hidden="true" className="scrim-bottom absolute inset-0" />
       )}
       {scrim === "hero" && <div aria-hidden="true" className={heroScrim} />}
     </div>
   );
 }
 
-/** Caption, plus a credit line when the image has one. */
-export function FrameCaption({ image, text, className }: { image: ImageId; text?: string; className?: string }) {
+/** Caption, plus a credit line when the image has one. Use `as="p"` outside a <figure>. */
+export function FrameCaption({
+  image,
+  text,
+  as: Tag = "figcaption",
+  className,
+}: {
+  image: ImageId;
+  text?: string;
+  as?: "figcaption" | "p";
+  className?: string;
+}) {
   const asset = getImage(image);
   const credit = creditLine(asset);
   return (
-    <figcaption className={cn("mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-sans text-xs text-muted", className)}>
+    <Tag className={cn("mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-sans text-xs text-muted", className)}>
       <span>{text ?? asset.caption}</span>
       {credit && (
         <>
@@ -113,6 +122,6 @@ export function FrameCaption({ image, text, className }: { image: ImageId; text?
           <span className="uppercase tracking-[0.14em]">{credit}</span>
         </>
       )}
-    </figcaption>
+    </Tag>
   );
 }

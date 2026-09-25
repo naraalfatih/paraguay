@@ -1,10 +1,11 @@
 "use client";
 
-import { useId, useMemo, useState, useSyncExternalStore } from "react";
+import { useId, useMemo, useSyncExternalStore } from "react";
 import type { ImageId } from "@/data/images";
 import type { ExperienceId, RegionId } from "@/data/types";
 import { Card } from "@/components/ui/Card";
 import { imageSizes } from "@/components/ui/Frame";
+import { departmentNames, ParaguayMap } from "@/components/ui/ParaguayMap";
 import { cn } from "@/lib/cn";
 
 export type ExplorerItem = {
@@ -25,6 +26,33 @@ type Props = {
 
 const noop = () => () => {};
 
+/*
+ * Filters live in the URL (?region=chaco&experience=hiking&q=lake), so a filtered view can be
+ * shared and survives the Back button. The server snapshot is empty, so the prerendered HTML
+ * always shows every destination.
+ */
+const URL_EVENT = "destinations:filters";
+
+function subscribeUrl(onChange: () => void) {
+  window.addEventListener("popstate", onChange);
+  window.addEventListener(URL_EVENT, onChange);
+  return () => {
+    window.removeEventListener("popstate", onChange);
+    window.removeEventListener(URL_EVENT, onChange);
+  };
+}
+
+function writeUrl(next: Record<string, string>) {
+  const params = new URLSearchParams(window.location.search);
+  for (const [key, value] of Object.entries(next)) {
+    if (!value || value === "all") params.delete(key);
+    else params.set(key, value);
+  }
+  const qs = params.toString();
+  window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
+  window.dispatchEvent(new Event(URL_EVENT));
+}
+
 /** Normalize for accent-insensitive search ("nacunday" finds "Ñacunday"). */
 const fold = (s: string) =>
   s
@@ -34,10 +62,19 @@ const fold = (s: string) =>
 
 export function DestinationExplorer({ items, regions, experiences }: Props) {
   const hydrated = useSyncExternalStore(noop, () => true, () => false);
-  const [region, setRegion] = useState<RegionId | "all">("all");
-  const [experience, setExperience] = useState<ExperienceId | "all">("all");
-  const [query, setQuery] = useState("");
+  const search = useSyncExternalStore(subscribeUrl, () => window.location.search, () => "");
   const searchId = useId();
+
+  const params = new URLSearchParams(search);
+  const regionParam = params.get("region");
+  const experienceParam = params.get("experience");
+  const region: RegionId | "all" = regions.find((r) => r.id === regionParam)?.id ?? "all";
+  const experience: ExperienceId | "all" = experiences.find((e) => e.id === experienceParam)?.id ?? "all";
+  const query = params.get("q") ?? "";
+
+  const setRegion = (id: string) => writeUrl({ region: id });
+  const setExperience = (id: string) => writeUrl({ experience: id });
+  const setQuery = (q: string) => writeUrl({ q });
 
   const active = region !== "all" || experience !== "all" || query.trim() !== "";
 
@@ -53,11 +90,7 @@ export function DestinationExplorer({ items, regions, experiences }: Props) {
 
   const regionLabel = (id: RegionId) => regions.find((r) => r.id === id)?.label ?? "";
 
-  const reset = () => {
-    setRegion("all");
-    setExperience("all");
-    setQuery("");
-  };
+  const reset = () => writeUrl({ region: "all", experience: "all", q: "" });
 
   const card = (d: ExplorerItem) => (
     <Card
@@ -95,14 +128,14 @@ export function DestinationExplorer({ items, regions, experiences }: Props) {
           className="lg:col-span-8"
           options={[{ id: "all", label: "All" }, ...regions.map((r) => ({ id: r.id, label: r.label }))]}
           value={region}
-          onChange={(v) => setRegion(v as RegionId | "all")}
+          onChange={setRegion}
         />
         <FilterGroup
           label="Experience"
           className="lg:col-span-12"
           options={[{ id: "all", label: "All" }, ...experiences]}
           value={experience}
-          onChange={(v) => setExperience(v as ExperienceId | "all")}
+          onChange={setExperience}
         />
       </fieldset>
 
@@ -119,7 +152,12 @@ export function DestinationExplorer({ items, regions, experiences }: Props) {
 
       {active ? (
         results.length > 0 ? (
-          <div className="mt-10 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">{results.map(card)}</div>
+          <section aria-labelledby="results-title">
+            <h2 id="results-title" className="sr-only">
+              Matching destinations
+            </h2>
+            <div className="mt-10 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">{results.map(card)}</div>
+          </section>
         ) : (
           <p className="mt-16 max-w-md text-lg text-muted">
             No destinations match those filters.{" "}
@@ -149,6 +187,11 @@ export function DestinationExplorer({ items, regions, experiences }: Props) {
                       {r.label}
                     </h2>
                     <p className="mt-3 max-w-xs font-sans text-sm text-muted">{r.description}</p>
+                    {/* Decorative: the heading and description already say where the region is. */}
+                    <ParaguayMap
+                      highlight={[...new Set(inRegion.flatMap((d) => departmentNames(d.department)))]}
+                      className="mt-6 w-24 lg:w-32"
+                    />
                   </div>
                 </div>
                 <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:col-span-9 lg:grid-cols-3">{inRegion.map(card)}</div>

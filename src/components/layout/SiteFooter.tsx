@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { glance, mainNav, site } from "@/data/site";
+import { footerCopy, glance, mainNav, site } from "@/data/site";
+import { RichText } from "@/components/editorial/RichText";
 import { FlagRule } from "@/components/ui/FlagRule";
 import { Ornament } from "@/components/ui/Ornament";
 import { formatReviewed } from "@/lib/date";
@@ -48,12 +49,9 @@ export function SiteFooter() {
 
         <div className="mt-16 grid gap-4 border-t border-line pt-8 font-sans text-sm text-muted lg:grid-cols-12">
           <p className="lg:col-span-7">
-            Images on this site are illustrative and do not show the specific places named on each page. Practical information was last reviewed in{" "}
-            {formatReviewed(site.lastReviewed)}. Always check official sources before you travel.
+            <RichText text={footerCopy.note.replace("{reviewed}", formatReviewed(site.lastReviewed))} />
           </p>
-          <p className="lg:col-span-5 lg:text-right">
-            An independent student project about Paraguay. Not affiliated with any government.
-          </p>
+          <p className="lg:col-span-5 lg:text-right">{footerCopy.project}</p>
         </div>
       </Container>
     </footer>

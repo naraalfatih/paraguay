@@ -32,7 +32,7 @@ export function PageHero({ image, eyebrow, title, dek, crumbs, size = "tall", vi
       {video && <HeroVideo src={video} />}
       <div aria-hidden="true" className={cn(heroScrim, "-z-10")} />
 
-      <div className="mx-auto w-full max-w-wide px-gutter pt-[calc(var(--spacing-header)+3rem)] pb-12 md:pb-20">
+      <div className="text-halo mx-auto w-full max-w-wide px-gutter pt-[calc(var(--spacing-header)+3rem)] pb-12 md:pb-20">
         {crumbs && <Breadcrumbs crumbs={crumbs} className="mb-8 motion-safe:animate-fade" />}
         {eyebrow && (
           <p className="eyebrow flex items-center gap-3 text-accent motion-safe:animate-rise">

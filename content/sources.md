@@ -114,6 +114,7 @@ Companion to `paraguay-research.md`. Source IDs (`[S#]`) are cited there.
 | S59 | Wikipedia — Paraguayan War casualties (overview of the debate) | https://en.wikipedia.org/wiki/Paraguayan_War_casualties | War debate |
 | S61 | Wikipedia — San Bernardino, Paraguay / Areguá | https://en.wikipedia.org/wiki/San_Bernardino,_Paraguay · https://en.wikipedia.org/wiki/Aregu%C3%A1 | Destinations |
 | S64 | Wikipedia — 2023 Paraguayan general election | https://en.wikipedia.org/wiki/2023_Paraguayan_general_election | Election results |
+| S65 | Natural Earth — Admin 1 states/provinces, 1:10m (public domain) | https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/ | Department boundaries for the site's maps (Tier A for geometry) |
 
 ## Suggested image sources (for the build phase: licensing must be checked per image)
 

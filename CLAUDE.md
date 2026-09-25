@@ -30,7 +30,12 @@ A cinematic, **Paraguay-themed** website all about Paraguay, made as a universit
 - **AI illustrations:** current images are AI-generated with Higgsfield and hosted on its CDN (`next.config.ts` `remotePatterns`).
   - They depict moods: landscapes, food, crafts, wildlife.
   - **Never** generate or present an AI image as a photograph of a specific named landmark.
-- **Hero videos:** `videos` in `src/data/images.ts` maps an image ID to a silent, seamless loop. Any `PageHero` using that image plays it over the still. The home hero plays `homeFilm`, a 15-second film re-encoded to ~3.7 MB. Keep hero videos small (≤ 4 MB, H.264, faststart). Videos autoplay muted. With reduced motion, data saver or blocked autoplay they show a "Play film" button instead, and they are always pausable.
+- **Hero videos:** `videos` in `src/data/images.ts` maps an image ID to a silent, seamless loop. Any `PageHero` using that image plays it over the still. The home hero plays `homeFilm`, a 15-second film re-encoded to ~3.7 MB. Keep hero videos small (≤ 4 MB, **H.264 8-bit** yuv420p, faststart, no audio). Generators often output 10-bit HEVC, which many browsers can't play, so always re-encode (e.g. in the Higgsfield sandbox with ffmpeg) and re-host before registering. Videos autoplay muted. With reduced motion, data saver or blocked autoplay they show a "Play film" button instead, and they are always pausable. A video that fails to load hides itself and leaves the still.
+
+## Maps and navigation
+- **Maps:** `src/data/map.ts` is generated from Natural Earth admin-1 boundaries (public domain, S65); don't edit it by hand. Render it with `ParaguayMap` (highlight departments with `departmentNames(d.department)`) and `MapLegend`. It's pure SVG with no JS. The river line is the shared border between the Chaco and eastern departments.
+- **Next chapter:** `src/data/journey.ts` sets the reading order of the main sections. Each section page ends with `<NextChapter from={path} />`.
+- **Destination filters** live in the URL (`?region=&experience=&q=`), so filtered views can be shared and survive the Back button. The prerendered HTML always lists every destination.
 
 ## Design system (`src/app/globals.css`)
 - **Look:** dark-first and cinematic: forest-green `night` surfaces for images, `paper`/`sand` bands for reading, and a red-earth (`tierra`) accent. Wrap content in `<Section tone="night|night-2|paper|sand">`.

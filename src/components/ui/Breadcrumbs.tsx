@@ -8,7 +8,7 @@ export function Breadcrumbs({ crumbs, className }: { crumbs: Crumb[]; className?
   const all: Crumb[] = [{ name: "Home", href: "/" }, ...crumbs];
   return (
     <>
-      <nav aria-label="Breadcrumb" className={cn("eyebrow text-cream/70", className)}>
+      <nav aria-label="Breadcrumb" className={cn("eyebrow text-cream/80", className)}>
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {all.map((c, i) => {
             const last = i === all.length - 1;

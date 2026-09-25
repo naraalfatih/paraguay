@@ -289,6 +289,34 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
+  /* Photo scrim for heroes: darkens under the header and behind the text column over any frame */
+  .scrim-hero {
+    background:
+      linear-gradient(to right, rgb(11 21 16 / 0.6) 0%, rgb(11 21 16 / 0.25) 45%, rgb(11 21 16 / 0) 75%),
+      linear-gradient(
+        to bottom,
+        rgb(11 21 16 / 0.7) 0%,
+        rgb(11 21 16 / 0.15) 20%,
+        rgb(11 21 16 / 0.3) 40%,
+        rgb(11 21 16 / 0.82) 72%,
+        rgb(11 21 16 / 0.95) 100%
+      );
+  }
+  /* Photo scrim for text set over the lower part of an image (overlay cards, bands) */
+  .scrim-bottom {
+    background: linear-gradient(
+      to top,
+      rgb(11 21 16 / 0.92) 0%,
+      rgb(11 21 16 / 0.72) 35%,
+      rgb(11 21 16 / 0.28) 65%,
+      rgb(11 21 16 / 0) 100%
+    );
+  }
+  /* Soft halo so small type over imagery keeps its edge */
+  .text-halo {
+    text-shadow: 0 1px 14px rgb(11 21 16 / 0.65);
+  }
+
   /* Hairline rule with a centered ñandutí-style mark handled in markup */
   .rule {
     border-top: 1px solid var(--line);

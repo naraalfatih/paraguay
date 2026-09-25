@@ -2,6 +2,7 @@ import { getImage } from "@/data/images";
 import type { TopicPage } from "@/data/types";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { NextChapter } from "@/components/ui/NextChapter";
 import { PageHero } from "@/components/ui/PageHero";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { articleJsonLd } from "@/lib/jsonld";
@@ -50,6 +51,7 @@ export function TopicArticle({ page }: { page: TopicPage }) {
       ))}
 
       <SourceList ids={page.sources} />
+      <NextChapter from={page.path} />
     </>
   );
 }

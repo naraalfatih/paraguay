@@ -44,7 +44,7 @@ export const ciudadDelEste: Destination = {
     "Shop the commercial center, compare prices and keep your receipts.",
   ],
   context: [
-    "This is a busy border city. As of 2026, the U.S. travel advisory asks visitors to take increased care in Alto Paraná department because of crime. Keep valuables out of sight, use licensed taxis and stay aware in crowds.",
+    "This is a busy border city. As of 2026, the US travel advisory asks visitors to take increased care in Alto Paraná department because of crime. Keep valuables out of sight, use licensed taxis and stay aware in crowds.",
     "Portuguese is widely heard here alongside Spanish and Guaraní.",
     "The dams on the Paraná, Itaipú here and Yacyretá further south with Argentina, make Paraguay one of the world’s leading exporters of hydroelectricity.",
   ],

@@ -65,3 +65,20 @@ export const glance: { label: string; value: string }[] = [
   { label: "Time zone", value: "UTC−3 all year" },
   { label: "UNESCO heritage", value: "Jesuit missions (1993), tereré (2020), Poncho Para’i (2023), guarania (2024)" },
 ];
+
+/** Map legend (research §1.1). */
+export const mapLegend = {
+  west: { label: "The Chaco", note: "About 60% of the land, under 4% of the people" },
+  east: { label: "Eastern Paraguay", note: "About 40% of the land, about 97% of the people" },
+  river: { label: "Paraguay River" },
+  capital: "Asunción, the capital",
+  where: "Where it is",
+  inRegion: { west: "in the Chaco", east: "in eastern Paraguay" },
+  label: "Map of Paraguay. The Paraguay River divides the Chaco in the west from eastern Paraguay. Asunción, the capital, sits on the river.",
+};
+
+/** Footer small print. `{reviewed}` becomes the month the practical information was last reviewed. */
+export const footerCopy = {
+  note: "Images on this site are illustrative and do not show the specific places named on each page. Maps use [Natural Earth](https://www.naturalearthdata.com/) boundaries (public domain). Practical information was last reviewed in {reviewed}. Always check official sources before you travel.",
+  project: "An independent student project about Paraguay. Not affiliated with any government.",
+};

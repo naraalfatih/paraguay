@@ -5,6 +5,7 @@ import { DishEntry } from "@/components/editorial/DishEntry";
 import { Note } from "@/components/editorial/Note";
 import { RichText } from "@/components/editorial/RichText";
 import { SourceList } from "@/components/editorial/SourceList";
+import { NextChapter } from "@/components/ui/NextChapter";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { Ornament } from "@/components/ui/Ornament";
@@ -115,6 +116,7 @@ export default function FoodPage() {
       </Section>
 
       <SourceList ids={foodPage.sources} />
+      <NextChapter from={foodPage.path} />
     </>
   );
 }

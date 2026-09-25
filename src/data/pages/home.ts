@@ -76,4 +76,11 @@ export const home = {
     text: "Big skies, red earth and two languages. Start with one story.",
   },
   featured: ["jesuit-missions", "encarnacion", "filadelfia"],
+  featuredHeading: {
+    eyebrow: "Destinations",
+    title: "Where to begin",
+    dek: "Mission ruins in the south, a riverside summer city and a frontier town in the Chaco.",
+    /** `{count}` is replaced with the number of destinations. */
+    action: "All {count} destinations",
+  },
 } as const;

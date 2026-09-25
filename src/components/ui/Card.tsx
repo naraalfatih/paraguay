@@ -49,7 +49,7 @@ export function Card({
         )}
       >
         <Frame image={image} ratio={ratio} sizes={sizes} scrim="bottom" zoomOnHover />
-        <div className="tone-night absolute inset-x-0 bottom-0 bg-transparent p-6 md:p-8">
+        <div className="tone-night text-halo absolute inset-x-0 bottom-0 bg-transparent p-6 md:p-8">
           {eyebrow && <p className="eyebrow text-accent">{eyebrow}</p>}
           <Heading className="mt-3 text-2xl text-cream">{link}</Heading>
           {excerpt && <p className="mt-3 line-clamp-3 max-w-md font-sans text-sm text-cream/80">{excerpt}</p>}

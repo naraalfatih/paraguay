@@ -7,7 +7,7 @@ import { homeFilm } from "@/data/images";
 import { home } from "@/data/pages/home";
 import { itineraries } from "@/data/pages/travel";
 import { regions } from "@/data/regions";
-import { glance, site } from "@/data/site";
+import { glance, mapLegend, site } from "@/data/site";
 import type { Destination } from "@/data/types";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
@@ -15,6 +15,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Frame, FrameCaption, imageSizes } from "@/components/ui/Frame";
 import { ArrowRight } from "@/components/ui/icons";
+import { MapLegend, ParaguayMap } from "@/components/ui/ParaguayMap";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -94,6 +95,12 @@ export default function HomePage() {
               <h2 id="glance-title" className="mt-4 text-3xl">
                 {home.glance.title}
               </h2>
+              <figure className="mt-8 grid max-w-sm grid-cols-[minmax(0,9rem)_1fr] items-end gap-5 lg:block">
+                <ParaguayMap label={mapLegend.label} highlight={["Asunción"]} className="lg:max-w-56" />
+                <figcaption className="lg:mt-6">
+                  <MapLegend notes highlight={mapLegend.capital} />
+                </figcaption>
+              </figure>
             </div>
             <dl className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:col-span-9 lg:grid-cols-4">
               {glance.map((g) => (
@@ -113,10 +120,10 @@ export default function HomePage() {
           <SectionHeading
             id="featured-title"
             index="01"
-            eyebrow="Destinations"
-            title="Where to begin"
-            dek="Mission ruins in the south, a riverside summer city and a frontier town in the Chaco."
-            action={{ href: "/destinations", label: `All ${destinations.length} destinations` }}
+            eyebrow={home.featuredHeading.eyebrow}
+            title={home.featuredHeading.title}
+            dek={home.featuredHeading.dek}
+            action={{ href: "/destinations", label: home.featuredHeading.action.replace("{count}", String(destinations.length)) }}
           />
           <div className="mt-14 grid gap-6 lg:grid-cols-12">
             {lead && (
@@ -154,7 +161,7 @@ export default function HomePage() {
       {/* 4 · Nature: full-bleed band */}
       <section aria-labelledby="nature-title" className="tone-night relative isolate flex min-h-[85svh] items-end overflow-hidden">
         <Frame image="chaco-dawn" ratio="fill" scrim="bottom" className="-z-10" />
-        <Container size="wide" className="pt-section pb-14">
+        <Container size="wide" className="text-halo pt-section pb-14">
           <p className="eyebrow flex items-center gap-3 text-accent">
             <span className="tabular-nums">02</span>
             <span aria-hidden="true" className="h-px w-8 bg-current opacity-60" />
@@ -341,7 +348,7 @@ export default function HomePage() {
       <section aria-labelledby="closing-title" className="tone-night relative isolate flex min-h-[80svh] items-center overflow-hidden">
         <Frame image="chaco-night" ratio="fill" className="-z-10" />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgb(11_21_16/0.35),rgb(11_21_16/0.8))]" />
-        <Container size="content" className="py-section text-center">
+        <Container size="content" className="text-halo py-section text-center">
           <p className="eyebrow text-accent">
             <span lang="gn">{home.closing.eyebrow.gn}</span> · {home.closing.eyebrow.en}
           </p>

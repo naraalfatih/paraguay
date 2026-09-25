@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getImage } from "@/data/images";
 import { eras, historyPage } from "@/data/pages/history";
 import { SourceList } from "@/components/editorial/SourceList";
+import { NextChapter } from "@/components/ui/NextChapter";
 import { Timeline } from "@/components/history/Timeline";
 import { TimelineControls } from "@/components/history/TimelineControls";
 import { Container } from "@/components/layout/Container";
@@ -66,6 +67,7 @@ export default function HistoryPage() {
       </Section>
 
       <SourceList ids={historyPage.sources} />
+      <NextChapter from={historyPage.path} />
     </>
   );
 }

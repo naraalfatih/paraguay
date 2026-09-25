@@ -28,20 +28,29 @@ export function HeroVideo({ src }: { src: string }) {
   const [started, setStarted] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [blocked, setBlocked] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  // Autoplay refused (e.g. low-power mode) → offer the button; anything else (unsupported, network) → give up.
+  const onPlayError = (err: unknown) => {
+    if (err instanceof DOMException && err.name === "AbortError") return;
+    if (err instanceof DOMException && err.name === "NotAllowedError") setBlocked(true);
+    else setFailed(true);
+  };
 
   useEffect(() => {
     const v = videoRef.current;
     if (!v || mode !== "auto") return;
-    v.play().catch(() => setBlocked(true));
+    v.play().catch(onPlayError);
   }, [mode, src]);
 
-  if (!mode || process.env.NEXT_PUBLIC_OFFLINE_IMAGES === "1") return null;
+  // If the film can't load, the still image stays and no dead "Play film" button is shown.
+  if (!mode || failed || process.env.NEXT_PUBLIC_OFFLINE_IMAGES === "1") return null;
 
   const toggle = () => {
     const v = videoRef.current;
     if (!v) return;
     if (v.paused) {
-      v.play().catch(() => setBlocked(true));
+      v.play().catch(onPlayError);
     } else {
       v.pause();
     }
@@ -67,6 +76,7 @@ export function HeroVideo({ src }: { src: string }) {
           setBlocked(false);
         }}
         onPause={() => setPlaying(false)}
+        onError={() => setFailed(true)}
         className={cn(
           "absolute inset-0 -z-10 h-full w-full object-cover transition-opacity duration-[1.6s]",
           started ? "opacity-100" : "opacity-0",

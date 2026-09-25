@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { NavItem } from "@/data/site";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 import { Ornament } from "@/components/ui/Ornament";
@@ -18,6 +18,14 @@ export function MobileNav({ items }: { items: NavItem[] }) {
     setOpen(true);
   };
   const close = () => dialogRef.current?.close();
+
+  // The menu is hidden at desktop widths; close it there so the page never stays inert behind it.
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 64rem)");
+    const onChange = () => mql.matches && dialogRef.current?.close();
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
 
   return (
     <>
@@ -83,7 +91,6 @@ export function MobileNav({ items }: { items: NavItem[] }) {
               })}
             </ul>
           </nav>
-
 
           <Ornament className="mt-auto size-16 self-end text-accent/40" />
         </div>

@@ -14,7 +14,8 @@ export function KeyFacts({
     <dl
       className={cn(
         "grid gap-px overflow-hidden border border-line bg-line",
-        columns === 2 && "sm:grid-cols-2",
+        // An odd last item spans the row instead of leaving an empty cell.
+        columns === 2 && "sm:grid-cols-2 sm:[&>:last-child:nth-child(odd)]:col-span-2",
         className,
       )}
     >

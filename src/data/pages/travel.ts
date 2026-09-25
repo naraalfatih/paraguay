@@ -71,7 +71,7 @@ export const practical: { id: string; title: string; items: RichText[] }[] = [
     id: "safety-health",
     title: "Safety and health",
     items: [
-      "As of 2026, the US travel advisory rates Paraguay **Level 1 (normal precautions)**, with increased caution advised in Alto Paraná, Amambay, Canindeyú, Concepción and San Pedro departments.",
+      "Travel advice changes, so **check your government’s current advice** before you go. Recent [US travel advice](https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/paraguay-travel-advisory.html) has asked for extra caution in several departments, including Alto Paraná, Amambay, Canindeyú, Concepción and San Pedro.",
       "Petty theft happens in cities, so keep valuables out of sight.",
       "Use insect repellent, because dengue and chikungunya cause periodic outbreaks. Protect yourself from heat and sun, and see a travel clinic about vaccines before you go.",
       "Paraguay stays on **UTC−3 all year**. Clocks no longer change.",
@@ -146,3 +146,27 @@ export const phrases: { phrase: string; lang: "gn" | "es"; meaning: string }[] =
   { phrase: "¿Cuánto cuesta?", lang: "es", meaning: "How much is it?" },
   { phrase: "¿Dónde está…?", lang: "es", meaning: "Where is…?" },
 ];
+
+/** Section headings on the travel guide. */
+export const travelSections = {
+  reviewed: "Last reviewed",
+  entry:
+    "Practical details can change. Entry requirements depend on your nationality, so check with Paraguay’s [Dirección General de Migraciones](https://www.migraciones.gov.py) or your nearest Paraguayan consulate before you travel.",
+  seasons: {
+    eyebrow: "Climate",
+    title: "When to go",
+    dek: "Subtropical in the east, hotter and drier in the Chaco. May to September is the most comfortable time for most trips.",
+  },
+  practical: { eyebrow: "Practical", title: "Good to know" },
+  routes: {
+    eyebrow: "Travel inspiration",
+    title: "Three sample routes",
+    dek: "Simple ideas for a first visit. Travel times depend on roads and transport, so leave some slack.",
+  },
+  phrases: {
+    eyebrow: "Language",
+    title: "Useful phrases",
+    dek: "A few words of Guaraní go a long way, and Spanish will get you everywhere.",
+    caption: "Useful phrases in Guaraní and Spanish",
+  },
+};

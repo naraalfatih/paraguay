@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { getImage } from "@/data/images";
-import { itineraries, phrases, practical, seasons, travelPage } from "@/data/pages/travel";
+import { itineraries, phrases, practical, seasons, travelPage, travelSections } from "@/data/pages/travel";
 import { site } from "@/data/site";
 import { Note } from "@/components/editorial/Note";
 import { RichText } from "@/components/editorial/RichText";
 import { SourceList } from "@/components/editorial/SourceList";
+import { NextChapter } from "@/components/ui/NextChapter";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { ItineraryList } from "@/components/travel/ItineraryList";
@@ -46,16 +47,16 @@ export default function TravelPage() {
         <Container size="wide">
           <Note
             tone="verify"
-            title={`Last reviewed ${formatReviewed(site.lastReviewed)}`}
-            text="Practical details can change. Entry requirements depend on your nationality, so check with Paraguay’s [Dirección General de Migraciones](https://www.migraciones.gov.py) or your nearest Paraguayan consulate before you travel."
+            title={`${travelSections.reviewed} ${formatReviewed(site.lastReviewed)}`}
+            text={travelSections.entry}
             className="mb-section-sm max-w-3xl"
           />
           <SectionHeading
             id="when-to-go"
             index="01"
-            eyebrow="Climate"
-            title="When to go"
-            dek="Subtropical in the east, hotter and drier in the Chaco. May to September is the most comfortable time for most trips."
+            eyebrow={travelSections.seasons.eyebrow}
+            title={travelSections.seasons.title}
+            dek={travelSections.seasons.dek}
           />
           <ol className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {seasons.map((s) => (
@@ -83,7 +84,12 @@ export default function TravelPage() {
       {/* Practical */}
       <Section tone="night" labelledBy="practical">
         <Container size="wide">
-          <SectionHeading id="practical" index="02" eyebrow="Practical" title="Good to know" />
+          <SectionHeading
+            id="practical"
+            index="02"
+            eyebrow={travelSections.practical.eyebrow}
+            title={travelSections.practical.title}
+          />
           <div className="mt-12 grid gap-x-16 gap-y-12 md:grid-cols-2">
             {practical.map((block) => (
               <section key={block.id} id={block.id} aria-labelledby={`${block.id}-title`} className="reveal border-t border-line pt-6">
@@ -110,9 +116,9 @@ export default function TravelPage() {
           <SectionHeading
             id="itineraries"
             index="03"
-            eyebrow="Travel inspiration"
-            title="Three sample routes"
-            dek="Simple ideas for a first visit. Travel times depend on roads and transport, so leave some slack."
+            eyebrow={travelSections.routes.eyebrow}
+            title={travelSections.routes.title}
+            dek={travelSections.routes.dek}
           />
           <div className="mt-12">
             <ItineraryList itineraries={itineraries} />
@@ -129,14 +135,14 @@ export default function TravelPage() {
               <SectionHeading
                 id="phrases"
                 index="04"
-                eyebrow="Language"
-                title="Useful phrases"
-                dek="A few words of Guaraní go a long way, and Spanish will get you everywhere."
+                eyebrow={travelSections.phrases.eyebrow}
+                title={travelSections.phrases.title}
+                dek={travelSections.phrases.dek}
                 size="md"
               />
             </div>
             <table className="w-full border-collapse text-left lg:col-span-7 lg:col-start-6">
-              <caption className="sr-only">Useful phrases in Guaraní and Spanish</caption>
+              <caption className="sr-only">{travelSections.phrases.caption}</caption>
               <thead>
                 <tr className="eyebrow text-muted">
                   <th scope="col" className="pb-3 font-medium">
@@ -167,6 +173,7 @@ export default function TravelPage() {
       </Section>
 
       <SourceList ids={travelPage.sources} />
+      <NextChapter from={travelPage.path} />
     </>
   );
 }
