@@ -48,8 +48,7 @@ export function SiteFooter() {
 
         <div className="mt-16 grid gap-4 border-t border-line pt-8 font-sans text-sm text-muted lg:grid-cols-12">
           <p className="lg:col-span-7">
-            Images on this site are AI-generated illustrations of Paraguayan landscapes, food and crafts. They are not
-            photographs of specific places. Practical information was last reviewed in{" "}
+            Images on this site are illustrative and do not show the specific places named on each page. Practical information was last reviewed in{" "}
             {formatReviewed(site.lastReviewed)}. Always check official sources before you travel.
           </p>
           <p className="lg:col-span-5 lg:text-right">

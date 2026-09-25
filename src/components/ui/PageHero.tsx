@@ -55,7 +55,8 @@ export function PageHero({ image, eyebrow, title, dek, crumbs, size = "tall", ch
       </div>
 
       <p className="absolute right-gutter bottom-5 hidden max-w-xs text-right font-sans text-[0.68rem] tracking-wide text-cream/60 md:block">
-        {asset.caption} — {creditLine(asset)}
+        {asset.caption}
+        {creditLine(asset) && ` — ${creditLine(asset)}`}
       </p>
     </section>
   );

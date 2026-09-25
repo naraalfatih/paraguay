@@ -91,16 +91,21 @@ export function Frame({
   );
 }
 
-/** Caption + credit line for a figure. */
+/** Caption, plus a credit line when the image has one. */
 export function FrameCaption({ image, text, className }: { image: ImageId; text?: string; className?: string }) {
   const asset = getImage(image);
+  const credit = creditLine(asset);
   return (
     <figcaption className={cn("mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 font-sans text-xs text-muted", className)}>
       <span>{text ?? asset.caption}</span>
-      <span aria-hidden="true" className="opacity-50">
-        /
-      </span>
-      <span className="uppercase tracking-[0.14em]">{creditLine(asset)}</span>
+      {credit && (
+        <>
+          <span aria-hidden="true" className="opacity-50">
+            /
+          </span>
+          <span className="uppercase tracking-[0.14em]">{credit}</span>
+        </>
+      )}
     </figcaption>
   );
 }

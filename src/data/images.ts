@@ -287,8 +287,9 @@ export function getImage(id: ImageId): ImageAsset {
   return images[id];
 }
 
+/** Visible credit, only for images that carry a photographer/license credit. */
 export function creditLine(asset: ImageAsset) {
-  return asset.credit === "ai" ? "AI-generated illustration" : `${asset.credit.text} · ${asset.credit.license}`;
+  return asset.credit === "ai" ? null : `${asset.credit.text} · ${asset.credit.license}`;
 }
 
 /**

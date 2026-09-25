@@ -26,7 +26,7 @@ A cinematic, **Paraguay-themed** website all about Paraguay, made as a universit
 ## Images
 - **Registry:** every image goes through `src/data/images.ts` and components take an `ImageId`.
   - `alt` and `caption` are required.
-  - The credit line under each image is generated automatically. There is no About page.
+  - Don’t label images “AI-generated” on the site (owner’s request). The footer notes that images are illustrative and don’t show the specific places named. Real photos get a credit line via `credit`. There is no About page.
 - **AI illustrations:** current images are AI-generated with Higgsfield and hosted on its CDN (`next.config.ts` `remotePatterns`).
   - They depict moods: landscapes, food, crafts, wildlife.
   - **Never** generate or present an AI image as a photograph of a specific named landmark.
