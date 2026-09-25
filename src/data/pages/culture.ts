@@ -155,7 +155,7 @@ export const culture: TopicPage = {
       blocks: [
         {
           type: "p",
-          text: "{gn:Ñandutí} means “spider web” in Guaraní. It is a round needle lace made in Itauguá and a few other towns.",
+          text: "{gn:Ñandutí} means “spider web” in Guaraní. It is a round needle lace made in [Itauguá](/destinations/itaugua) and a few other towns.",
         },
         { type: "figure", image: "nanduti" },
         {
@@ -185,7 +185,7 @@ export const culture: TopicPage = {
             "**24 June · San Juan**, with fire games such as walking on embers and kicking a flaming ball ({gn:pelota tata}), plus festival foods.",
             "**Late June–July · Kamba Ra’anga** in Altos, a masked festival for Saints Peter and Paul that blends Catholic, Indigenous and Afro-Paraguayan traditions.",
             "**25 August · Guaraní Language Day.**",
-            "**8 December · Virgen de Caacupé**, the biggest pilgrimage of the year. Hundreds of thousands of people walk or cycle to the basilica.",
+            "**8 December · Virgen de [Caacupé](/destinations/caacupe)**, the biggest pilgrimage of the year. Hundreds of thousands of people walk or cycle to the basilica.",
           ],
         },
         {

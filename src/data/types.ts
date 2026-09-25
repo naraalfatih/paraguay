@@ -7,7 +7,7 @@ import type { SourceId } from "./sources";
  */
 export type RichText = string;
 
-export type RegionId = "asuncion" | "central-hills" | "south" | "east" | "chaco";
+export type RegionId = "asuncion" | "central-hills" | "south" | "east" | "north" | "chaco";
 
 export type ExperienceId = "city" | "heritage" | "nature" | "water" | "hiking" | "crafts";
 

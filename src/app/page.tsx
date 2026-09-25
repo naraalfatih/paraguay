@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { destinations, getDestination } from "@/data/destinations";
-import { heroVideo } from "@/data/images";
 import { cocido, dishes } from "@/data/pages/food";
 import { eras } from "@/data/pages/history";
 import { home } from "@/data/pages/home";
 import { itineraries } from "@/data/pages/travel";
 import { regions } from "@/data/regions";
-import { site } from "@/data/site";
+import { glance, site } from "@/data/site";
 import type { Destination } from "@/data/types";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
@@ -37,8 +36,7 @@ export default function HomePage() {
 
       {/* 1 · Title sequence */}
       <PageHero
-        image={heroVideo.poster}
-        video={heroVideo.src}
+        image="red-earth-road"
         size="full"
         eyebrow={
           <>
@@ -82,6 +80,28 @@ export default function HomePage() {
               </div>
             ))}
           </dl>
+        </Container>
+      </Section>
+
+      {/* 2b · At a glance */}
+      <Section tone="night-2" spacing="sm" labelledBy="glance-title">
+        <Container size="wide">
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-3">
+              <p className="eyebrow text-accent">{home.glance.eyebrow}</p>
+              <h2 id="glance-title" className="mt-4 text-3xl">
+                {home.glance.title}
+              </h2>
+            </div>
+            <dl className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:col-span-9 lg:grid-cols-4">
+              {glance.map((g) => (
+                <div key={g.label} className="reveal bg-surface p-6">
+                  <dt className="eyebrow text-muted">{g.label}</dt>
+                  <dd className="mt-3 text-lg leading-snug">{g.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </Container>
       </Section>
 

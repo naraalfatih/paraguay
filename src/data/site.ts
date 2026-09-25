@@ -51,13 +51,17 @@ export const mainNav: NavItem[] = [
   },
 ];
 
-export const footerNav: NavItem[] = [
-  {
-    href: "/about",
-    label: "About this project",
-    description: "Why this site exists, our sources and image credits.",
-  },
-];
-
 /** Static routes for the sitemap (destination pages are added from data). */
-export const staticRoutes = ["/", ...mainNav.map((n) => n.href), "/about"];
+export const staticRoutes = ["/", ...mainNav.map((n) => n.href)];
+
+/** Quick facts (research §0). Used in the footer and on the home page. */
+export const glance: { label: string; value: string }[] = [
+  { label: "Capital", value: "Asunción" },
+  { label: "Languages", value: "Spanish and Guaraní" },
+  { label: "Currency", value: "Paraguayan guaraní (₲)" },
+  { label: "Population", value: "About 6.1 million (2022 census)" },
+  { label: "Area", value: "About 406,750 km², landlocked" },
+  { label: "Neighbors", value: "Argentina, Brazil and Bolivia" },
+  { label: "Time zone", value: "UTC−3 all year" },
+  { label: "UNESCO heritage", value: "Jesuit missions (1993), tereré (2020), Poncho Para’i (2023), guarania (2024)" },
+];

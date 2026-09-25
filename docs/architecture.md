@@ -4,7 +4,7 @@
 > - **Project:** a Paraguay-themed university project for a general audience. There is no event or UN framing.
 > - **Look:** a cinematic, dark-first visual direction with forest-green night surfaces, a red-earth accent and a thin national-tricolor rule in the footer. The tokens in `src/app/globals.css` supersede §6.2.
 > - **Images:** AI illustrations and a silent hero loop generated with Higgsfield, served from its CDN via `src/data/images.ts`. No specific landmark is depicted.
-> - **Pages:** all built: home, destinations and 11 destination pages, culture, food, nature, history (interactive timeline), travel (called "Travel", at `/travel-guide`) and about (sources and image credits).
+> - **Pages:** all built: home, destinations and 11 destination pages, culture, food, nature, history (interactive timeline) and travel (called "Travel", at `/travel-guide`). The About page was removed at the owner’s request.
 
 **Status:** v1 implemented (all pages). See the note above for changes from the original plan.
 **Stack (verified Sep 2026):**

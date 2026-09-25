@@ -3,7 +3,7 @@
 import { useRef, useState, useSyncExternalStore } from "react";
 import { cn } from "@/lib/cn";
 
-const QUERY = "(min-width: 768px) and (prefers-reduced-motion: no-preference)";
+const QUERY = "(prefers-reduced-motion: no-preference)";
 
 function subscribe(onChange: () => void) {
   const mql = window.matchMedia(QUERY);
@@ -18,7 +18,7 @@ function canPlay() {
 
 /**
  * Ambient background loop layered over the hero's still image.
- * Only loads on larger screens, without reduced motion or data saver, and can be paused (WCAG 2.2.2).
+ * Skipped with reduced motion or data saver; can be paused (WCAG 2.2.2).
  */
 export function HeroVideo({ src }: { src: string }) {
   const enabled = useSyncExternalStore(subscribe, canPlay, () => false);
@@ -49,10 +49,11 @@ export function HeroVideo({ src }: { src: string }) {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         aria-hidden="true"
         tabIndex={-1}
         onCanPlay={() => setReady(true)}
+        onPlaying={() => setReady(true)}
         className={cn(
           "absolute inset-0 -z-10 h-full w-full object-cover transition-opacity duration-[1.6s]",
           ready ? "opacity-100" : "opacity-0",

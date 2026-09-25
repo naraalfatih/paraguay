@@ -138,6 +138,34 @@ export const images = {
     caption: "A palm-lined country road at dusk",
     credit: "ai",
   },
+  "pilgrimage-night": {
+    src: `${CDN}/hf_20260925_035201_cffa499c-c835-4aa9-9924-7710ccc9bb78.png`,
+    ...wide,
+    alt: "Pilgrims seen from behind walk along a dark road with candles toward a glowing town on a hill.",
+    caption: "A candlelit pilgrimage at night",
+    credit: "ai",
+  },
+  "white-sand-lake": {
+    src: `${CDN}/hf_20260925_035201_1b4680be-bb25-484d-901d-7586652cf4ce.png`,
+    ...wide,
+    alt: "A clear, shallow lake over white sand, ringed by savanna woodland with twisted trees and tall grass.",
+    caption: "A clear lake in cerrado savanna",
+    credit: "ai",
+  },
+  "forest-canopy": {
+    src: `${CDN}/hf_20260925_035201_81d48a1b-232a-4d10-8f1e-3541ef7ea2fe.png`,
+    ...wide,
+    alt: "Aerial view of an unbroken green forest canopy at sunrise, with mist in the valleys and a river glinting through.",
+    caption: "Unbroken Atlantic Forest canopy",
+    credit: "ai",
+  },
+  "sandstone-hills": {
+    src: `${CDN}/hf_20260925_035201_a155f703-20f8-4f11-ab47-a6a6709c3414.png`,
+    ...wide,
+    alt: "Rugged, wooded sandstone hills rise from savanna, their rock faces lit by the last warm light of dusk.",
+    caption: "Wooded sandstone hills in the north",
+    credit: "ai",
+  },
   harp: {
     src: `${CDN}/hf_20260925_025741_35709538-5b45-4bd0-9ecf-811ac34dd66e.png`,
     ...wide,
@@ -263,9 +291,14 @@ export function creditLine(asset: ImageAsset) {
   return asset.credit === "ai" ? "AI-generated illustration" : `${asset.credit.text} · ${asset.credit.license}`;
 }
 
-/** Silent, seamless 5-second loop animated from "red-earth-road" (AI-generated, Seedance 2.5). */
-export const heroVideo = {
-  src: `${CDN}/hf_20260925_031715_80a1fd4d-94fa-4e76-a852-614d786c12ff.mp4`,
-  poster: "red-earth-road" as ImageId,
-  caption: "Breeze over the red-earth countryside",
+/**
+ * Silent, seamless 5-second loops (AI-generated with Seedance 2.5 from the matching still).
+ * Any PageHero whose image has an entry here plays the video over the still.
+ */
+export const videos: Partial<Record<ImageId, string>> = {
+  "red-earth-road": `${CDN}/hf_20260925_031715_80a1fd4d-94fa-4e76-a852-614d786c12ff.mp4`,
+  "river-meander": `${CDN}/hf_20260925_035050_0d43f57f-b236-457f-a586-3901cd28fc27.mp4`,
+  "wetland-dawn": `${CDN}/hf_20260925_035049_684f9184-1c3b-415d-88d7-60c73233e31c.mp4`,
+  terere: `${CDN}/hf_20260925_035049_04b9cc70-bc0d-4bc2-b0ae-dc314e088149.mp4`,
+  harp: `${CDN}/hf_20260925_035349_5b6ba3f5-afe7-4ab1-96be-fc0069e6926d.mp4`,
 };

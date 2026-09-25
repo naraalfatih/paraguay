@@ -1,4 +1,4 @@
-import { creditLine, getImage, type ImageId } from "@/data/images";
+import { creditLine, getImage, videos, type ImageId } from "@/data/images";
 import type { Crumb } from "@/lib/jsonld";
 import { cn } from "@/lib/cn";
 import { Breadcrumbs } from "./Breadcrumbs";
@@ -12,14 +12,13 @@ type PageHeroProps = {
   dek?: React.ReactNode;
   crumbs?: Crumb[];
   size?: "full" | "tall";
-  /** Optional ambient video loop layered over the still image. */
-  video?: string;
   children?: React.ReactNode;
 };
 
 /** Full-bleed opening "title sequence" used at the top of every page. */
-export function PageHero({ image, eyebrow, title, dek, crumbs, size = "tall", video, children }: PageHeroProps) {
+export function PageHero({ image, eyebrow, title, dek, crumbs, size = "tall", children }: PageHeroProps) {
   const asset = getImage(image);
+  const video = videos[image];
   return (
     <section
       className={cn(

@@ -49,7 +49,7 @@ export const nature: TopicPage = {
         },
         {
           type: "p",
-          text: "The largest surviving block is the **Mbaracayú Forest Nature Reserve** (64,405 hectares), run by the Fundación Moisés Bertoni. Other remnants survive at San Rafael, [Ybycuí](/destinations/ybycui), [Ñacunday](/destinations/nacunday) and the Itaipú reserves.",
+          text: "The largest surviving block is the [Mbaracayú Forest Nature Reserve](/destinations/mbaracayu) (64,405 hectares), run by the Fundación Moisés Bertoni. Other remnants survive at San Rafael, [Ybycuí](/destinations/ybycui), [Ñacunday](/destinations/nacunday) and the Itaipú reserves.",
         },
       ],
     },
@@ -60,7 +60,7 @@ export const nature: TopicPage = {
       blocks: [
         {
           type: "p",
-          text: "In the far north, Paraguay shares the **Pantanal**, the world’s largest tropical wetland. The Paraguayan part is on UNESCO’s Tentative List for World Heritage status.",
+          text: "In the far north, Paraguay shares the [Pantanal](/destinations/pantanal), the world’s largest tropical wetland. The Paraguayan part is on UNESCO’s Tentative List for World Heritage status.",
         },
         {
           type: "p",
@@ -128,6 +128,10 @@ export const nature: TopicPage = {
             { label: "Cerro Corá", value: "Site of the war’s final battle in 1870, with hills and rock art." },
             { label: "Lago Ypoá", value: "Created 1992. About 100,000 ha of wetlands. A Ramsar site since 1995." },
           ],
+        },
+        {
+          type: "p",
+          text: "Read more about the [Chaco national parks](/destinations/chaco-parks), [Cerro Corá](/destinations/cerro-cora) and [Laguna Blanca](/destinations/laguna-blanca).",
         },
         {
           type: "note",

@@ -26,11 +26,11 @@ A cinematic, **Paraguay-themed** website all about Paraguay, made as a universit
 ## Images
 - **Registry:** every image goes through `src/data/images.ts` and components take an `ImageId`.
   - `alt` and `caption` are required.
-  - The credit line and the `/about` credits list are generated automatically.
+  - The credit line under each image is generated automatically. There is no About page.
 - **AI illustrations:** current images are AI-generated with Higgsfield and hosted on its CDN (`next.config.ts` `remotePatterns`).
   - They depict moods: landscapes, food, crafts, wildlife.
   - **Never** generate or present an AI image as a photograph of a specific named landmark.
-- **Hero video:** the home hero video is a silent loop. It only loads on larger screens without reduced motion or data saver, and it has a pause button.
+- **Hero videos:** `videos` in `src/data/images.ts` maps an image ID to a silent, seamless loop. Any `PageHero` using that image plays it over the still. Videos are skipped with reduced motion or data saver, and have a pause button.
 
 ## Design system (`src/app/globals.css`)
 - **Look:** dark-first and cinematic: forest-green `night` surfaces for images, `paper`/`sand` bands for reading, and a red-earth (`tierra`) accent. Wrap content in `<Section tone="night|night-2|paper|sand">`.

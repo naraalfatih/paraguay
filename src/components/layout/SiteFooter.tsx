@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { footerNav, mainNav, site } from "@/data/site";
+import { glance, mainNav, site } from "@/data/site";
 import { FlagRule } from "@/components/ui/FlagRule";
 import { Ornament } from "@/components/ui/Ornament";
 import { formatReviewed } from "@/lib/date";
@@ -33,16 +33,15 @@ export function SiteFooter() {
               </ul>
             </div>
             <div>
-              <h2 className="eyebrow text-muted">This guide</h2>
-              <ul className="mt-4">
-                {footerNav.map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className="inline-flex min-h-11 items-center text-lg hover:text-accent">
-                      {item.label}
-                    </Link>
-                  </li>
+              <h2 className="eyebrow text-muted">At a glance</h2>
+              <dl className="mt-4 space-y-3 font-sans text-sm">
+                {glance.slice(0, 4).map((g) => (
+                  <div key={g.label}>
+                    <dt className="text-muted">{g.label}</dt>
+                    <dd className="mt-0.5 text-fg">{g.value}</dd>
+                  </div>
                 ))}
-              </ul>
+              </dl>
             </div>
           </nav>
         </div>

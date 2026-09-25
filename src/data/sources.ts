@@ -165,6 +165,16 @@ export const sources = {
     publisher: "Secretaría Nacional de Cultura",
     url: "https://cultura.gov.py/2018/07/las-ruinas-de-humaita-brillan-en-la-noche/",
   },
+  S38: {
+    title: "SENATUR visits the ruins of Humaitá",
+    publisher: "Secretaría Nacional de Turismo (SENATUR)",
+    url: "https://senatur.gov.py/noticias/titular-de-senatur-visito-las-ruinas-de-humaita/",
+  },
+  S39b: {
+    title: "Ecotur Laguna Blanca",
+    publisher: "Visit Paraguay (SENATUR)",
+    url: "https://visitparaguay.travel/places/ecotur-laguna-blanca",
+  },
   S40: {
     title: "Saltos del Monday",
     publisher: "Wikipedia",
@@ -179,6 +189,11 @@ export const sources = {
     title: "Cerro Akatĩ: hiking in the Ybytyruzú",
     publisher: "Netgav",
     url: "https://netgav.com.py/en/cerro-akati-en/",
+  },
+  S43: {
+    title: "Paraguay national parks",
+    publisher: "Wikivoyage",
+    url: "https://en.wikivoyage.org/wiki/Paraguay_national_parks",
   },
   S44: {
     title: "National Parks in the Paraguayan Chaco",

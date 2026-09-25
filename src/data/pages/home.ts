@@ -17,6 +17,10 @@ export const home = {
     { value: "60%", label: "of the land is Chaco", note: "home to under 4% of people" },
     { value: "19", label: "Indigenous peoples", note: "2022 Indigenous census" },
   ],
+  glance: {
+    eyebrow: "Quick facts",
+    title: "Paraguay at a glance",
+  },
   nature: {
     eyebrow: "Nature",
     title: "Two worlds, one river",

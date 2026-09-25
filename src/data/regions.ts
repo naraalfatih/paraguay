@@ -17,13 +17,17 @@ export const regions: Record<RegionId, { label: string; description: string }> =
     label: "The Paraná Frontier",
     description: "Ciudad del Este, Itaipú and the waterfalls of Alto Paraná.",
   },
+  north: {
+    label: "The North",
+    description: "Wetlands, cerrado, the largest surviving Atlantic Forest and a historic battlefield.",
+  },
   chaco: {
     label: "The Chaco",
     description: "The vast, sparsely populated west.",
   },
 };
 
-export const regionOrder: RegionId[] = ["asuncion", "central-hills", "south", "east", "chaco"];
+export const regionOrder: RegionId[] = ["asuncion", "central-hills", "south", "east", "north", "chaco"];
 
 export const experiences: Record<ExperienceId, string> = {
   city: "Cities",

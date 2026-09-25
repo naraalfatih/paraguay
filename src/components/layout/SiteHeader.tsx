@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { footerNav, mainNav } from "@/data/site";
+import { mainNav } from "@/data/site";
 import { Ornament } from "@/components/ui/Ornament";
 import { HeaderFrame } from "./HeaderFrame";
 import { MobileNav } from "./MobileNav";
@@ -18,7 +18,7 @@ export function SiteHeader() {
           <NavLinks items={mainNav} />
         </nav>
 
-        <MobileNav items={mainNav} secondary={footerNav} />
+        <MobileNav items={mainNav} />
       </div>
     </HeaderFrame>
   );

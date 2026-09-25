@@ -8,7 +8,7 @@ import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 import { Ornament } from "@/components/ui/Ornament";
 import { isActive } from "./NavLinks";
 
-export function MobileNav({ items, secondary }: { items: NavItem[]; secondary: NavItem[] }) {
+export function MobileNav({ items }: { items: NavItem[] }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -84,15 +84,6 @@ export function MobileNav({ items, secondary }: { items: NavItem[]; secondary: N
             </ul>
           </nav>
 
-          <ul className="mt-6 space-y-1">
-            {secondary.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} onClick={close} className="eyebrow inline-flex h-11 items-center text-muted hover:text-fg">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
 
           <Ornament className="mt-auto size-16 self-end text-accent/40" />
         </div>
