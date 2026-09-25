@@ -15,12 +15,17 @@ export default function OpengraphImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: "#0d110f",
+          background: "#0b1510",
           color: "#efe8da",
           padding: "72px 80px",
           position: "relative",
         }}
       >
+        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, display: "flex", flexDirection: "column" }}>
+          <div style={{ height: 8, background: "#d52b1e" }} />
+          <div style={{ height: 8, background: "#efe8da" }} />
+          <div style={{ height: 8, background: "#0038a8" }} />
+        </div>
         {rings.map((d) => (
           <div
             key={d}
@@ -31,13 +36,13 @@ export default function OpengraphImage() {
               width: d,
               height: d,
               borderRadius: 9999,
-              border: "2px solid rgba(216,166,87,0.55)",
+              border: "2px solid rgba(224,138,104,0.55)",
             }}
           />
         ))}
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", width: 760 }}>
-          <div style={{ fontSize: 22, letterSpacing: 6, textTransform: "uppercase", color: "#d8a657" }}>
-            An editorial guide
+          <div style={{ fontSize: 22, letterSpacing: 6, textTransform: "uppercase", color: "#e08a68" }}>
+            Mba’éichapa · Welcome
           </div>
           <div style={{ fontSize: 132, lineHeight: 1, marginTop: 18, letterSpacing: -3 }}>Paraguay</div>
           <div style={{ fontSize: 34, marginTop: 26, color: "#a8a092" }}>

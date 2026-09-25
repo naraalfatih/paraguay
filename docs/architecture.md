@@ -1,8 +1,8 @@
 # Paraguay Website — Architecture
 
 > **Final state (v1, Sep 2026).** Where this document and the code differ, the code and `CLAUDE.md` win. Key changes from the original plan:
-> - **Project:** a university project for **United Nations Day**, for a general audience. UN Day is mentioned by name only.
-> - **Look:** a cinematic, dark-first visual direction. The tokens in `src/app/globals.css` supersede §6.2.
+> - **Project:** a Paraguay-themed university project for a general audience. There is no event or UN framing.
+> - **Look:** a cinematic, dark-first visual direction with forest-green night surfaces, a red-earth accent and a thin national-tricolor rule in the footer. The tokens in `src/app/globals.css` supersede §6.2.
 > - **Images:** AI illustrations and a silent hero loop generated with Higgsfield, served from its CDN via `src/data/images.ts`. No specific landmark is depicted.
 > - **Pages:** all built: home, destinations and 11 destination pages, culture, food, nature, history (interactive timeline), travel (called "Travel", at `/travel-guide`) and about (sources and image credits).
 

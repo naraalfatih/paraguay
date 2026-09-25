@@ -14,7 +14,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "About This Project",
   description:
-    "Why this Paraguay website was made for United Nations Day, how it was researched, and credits for every source and AI-generated illustration.",
+    "Why this Paraguay website was made, how it was researched, and credits for every source and AI-generated illustration.",
   path: "/about",
 });
 
@@ -45,9 +45,9 @@ export default function AboutPage() {
     <>
       <PageHero
         image="river-dusk"
-        eyebrow={site.occasion}
+        eyebrow="Behind the project"
         title="About this project"
-        dek="A university project for United Nations Day: a short, cinematic introduction to Paraguay, its land, people, food and history."
+        dek="A student project: a short, cinematic introduction to Paraguay, its land, people, food and history."
         crumbs={[{ name: "About", href: "/about" }]}
       />
 
@@ -59,13 +59,13 @@ export default function AboutPage() {
             </div>
             <div className="prose-editorial max-w-prose lg:col-span-6 lg:col-start-7">
               <p className="dropcap">
-                United Nations Day, on 24 October, celebrates the countries of the world coming together. For this
-                university project we chose to tell the story of one country: Paraguay, a landlocked nation in the
-                heart of South America that many people know little about.
+                This university project tells the story of one country: Paraguay, a landlocked nation in the heart of
+                South America that many people know little about. We wanted to show its landscapes, its two languages,
+                its food and its past in a way anyone can enjoy in a few minutes.
               </p>
               <p>
-                The site is independent. It is not an official United Nations or Paraguayan government website, and it
-                is not affiliated with either.
+                The site is independent. It is not an official website of the Paraguayan government or any other
+                organization.
               </p>
             </div>
           </div>

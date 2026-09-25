@@ -40,7 +40,11 @@ export default function HomePage() {
         image={heroVideo.poster}
         video={heroVideo.src}
         size="full"
-        eyebrow={site.occasion}
+        eyebrow={
+          <>
+            <span lang="gn">{site.greeting.gn}</span> · {site.greeting.en}
+          </>
+        }
         title={home.title}
         dek={home.dek}
       >
@@ -314,9 +318,11 @@ export default function HomePage() {
       {/* 10 · Closing */}
       <section aria-labelledby="closing-title" className="tone-night relative isolate flex min-h-[80svh] items-center overflow-hidden">
         <Frame image="chaco-night" ratio="fill" className="-z-10" />
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgb(13_17_15/0.35),rgb(13_17_15/0.8))]" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgb(11_21_16/0.35),rgb(11_21_16/0.8))]" />
         <Container size="content" className="py-section text-center">
-          <p className="eyebrow text-accent">{home.closing.eyebrow}</p>
+          <p className="eyebrow text-accent">
+            <span lang="gn">{home.closing.eyebrow.gn}</span> · {home.closing.eyebrow.en}
+          </p>
           <h2 id="closing-title" className="reveal mx-auto mt-6 max-w-4xl text-4xl">
             {home.closing.title}
           </h2>

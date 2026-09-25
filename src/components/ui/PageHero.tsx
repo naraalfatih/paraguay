@@ -7,7 +7,7 @@ import { HeroVideo } from "./HeroVideo";
 
 type PageHeroProps = {
   image: ImageId;
-  eyebrow?: string;
+  eyebrow?: React.ReactNode;
   title: React.ReactNode;
   dek?: React.ReactNode;
   crumbs?: Crumb[];

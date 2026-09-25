@@ -21,7 +21,7 @@ export const imageSizes = {
 
 /** Top and bottom darkening so the header and hero text stay legible over any image. */
 export const heroScrim =
-  "absolute inset-0 bg-[linear-gradient(to_bottom,rgb(13_17_15/0.7)_0%,rgb(13_17_15/0)_22%,rgb(13_17_15/0)_45%,rgb(13_17_15/0.9)_100%)]";
+  "absolute inset-0 bg-[linear-gradient(to_bottom,rgb(11_21_16/0.7)_0%,rgb(11_21_16/0)_22%,rgb(11_21_16/0)_45%,rgb(11_21_16/0.9)_100%)]";
 
 /** Set NEXT_PUBLIC_OFFLINE_IMAGES=1 to render placeholder art when the image CDN is unreachable. */
 const offline = process.env.NEXT_PUBLIC_OFFLINE_IMAGES === "1";

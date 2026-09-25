@@ -10,8 +10,8 @@
   --color-black: #000000;
 
   /* Dark, cinematic surfaces */
-  --color-night: #0d110f;
-  --color-night-2: #151a17;
+  --color-night: #0b1510;
+  --color-night-2: #12201a;
   --color-cream: #efe8da;
   --color-mist: #a8a092;
 
@@ -33,6 +33,10 @@
   --color-ocre: #b9832f; /* decorative only on light surfaces */
   --color-ocre-light: #d8a657;
   --color-lapacho: #c9577a; /* decorative only */
+
+  /* National colors: decorative accents only (the tricolor rule), never large fills */
+  --color-flag-red: #d52b1e;
+  --color-flag-blue: #0038a8;
 
   --text-xs: 0.75rem;
   --text-xs--line-height: 1.5;
@@ -120,7 +124,7 @@
     --surface: var(--color-night);
     --fg: var(--color-cream);
     --muted: var(--color-mist);
-    --accent: var(--color-ocre-light);
+    --accent: var(--color-tierra-light);
     --link: var(--color-tierra-light);
     --line: rgb(239 232 218 / 0.16);
   }
@@ -128,7 +132,7 @@
     --surface: var(--color-night-2);
     --fg: var(--color-cream);
     --muted: var(--color-mist);
-    --accent: var(--color-ocre-light);
+    --accent: var(--color-tierra-light);
     --link: var(--color-tierra-light);
     --line: rgb(239 232 218 / 0.16);
   }
@@ -214,7 +218,7 @@
   }
 
   ::selection {
-    background-color: var(--color-ocre-light);
+    background-color: var(--color-tierra-light);
     color: var(--color-night);
   }
 

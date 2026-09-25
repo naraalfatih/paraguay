@@ -4,12 +4,12 @@ export const home = {
   title: "Paraguay",
   dek: "The heart of South America: one country, two languages, two very different landscapes and a remarkable history.",
   summary:
-    "A cinematic portrait of Paraguay for United Nations Day: its landscapes, destinations, Guaraní culture, food, nature and history.",
+    "A cinematic portrait of Paraguay, the heart of South America: its landscapes, destinations, Guaraní culture, food, nature and history.",
   intro: {
     eyebrow: "Welcome",
     statement:
       "Landlocked between Argentina, Brazil and Bolivia, Paraguay is split in two by the Paraguay River: green hills and red earth to the east, the vast Chaco plain to the west.",
-    text: "Most Paraguayans speak both Spanish and Guaraní, an Indigenous language that is part of everyday life. This site is a short, cinematic introduction to the country, its places, people, food and past, made for United Nations Day.",
+    text: "Most Paraguayans speak both Spanish and Guaraní, an Indigenous language that is part of everyday life. This site is a short, cinematic introduction to the country: its places, its people, its food and its past.",
   },
   stats: [
     { value: "6.1 M", label: "people", note: "2022 census" },
@@ -67,7 +67,7 @@ export const home = {
     ] satisfies RichText[],
   },
   closing: {
-    eyebrow: "United Nations Day · 24 October 2026",
+    eyebrow: { gn: "Aguyje", en: "Thank you for visiting" },
     title: "Come for the landscapes. Stay for the tereré.",
     text: "Big skies, red earth and two languages. Start with one story.",
   },

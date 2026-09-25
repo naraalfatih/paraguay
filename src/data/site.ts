@@ -5,8 +5,9 @@ export const site = {
   title: "Paraguay — Land, Culture & Travel",
   tagline: "A cinematic portrait of the heart of South America",
   description:
-    "Discover Paraguay: its landscapes, destinations, Guaraní culture, food, nature and history. A university project for United Nations Day.",
-  occasion: "United Nations Day · 24 October 2026",
+    "Discover Paraguay, the heart of South America: its landscapes, destinations, Guaraní culture, food, nature and history.",
+  /** Guaraní greeting used as the home-page kicker. */
+  greeting: { gn: "Mba’éichapa", en: "Welcome to Paraguay" },
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (vercelUrl ? `https://${vercelUrl}` : "http://localhost:3000"),

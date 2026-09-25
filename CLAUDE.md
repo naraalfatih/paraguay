@@ -2,7 +2,7 @@
 
 @AGENTS.md
 
-A cinematic website all about Paraguay, made as a university project for **United Nations Day (24 October 2026)**.
+A cinematic, **Paraguay-themed** website all about Paraguay, made as a university project.
 - **Audience:** the general public, so write in plain language.
 - **Stack:** Next.js 16 (App Router), React 19, TypeScript, Tailwind 4. Every route is statically generated.
 - **References:** design in `docs/architecture.md`; facts in `content/paraguay-research.md` (source IDs in `content/sources.md`).
@@ -19,7 +19,7 @@ A cinematic website all about Paraguay, made as a university project for **Unite
 - **Copy lives in `src/data/`**, never hard-coded in components.
 - **Facts come only from `content/paraguay-research.md`.** Never invent facts, numbers or superlatives. Items marked `[!]` there must be phrased cautiously or left out.
 - **Never state visa or entry rules, fees, exchange rates or schedules as fact.** Link to official sources.
-- **UN Day is mentioned by name only.** No UN emblem or branding, and nothing that implies official affiliation.
+- **Paraguay-themed, not event-themed.** No United Nations framing or branding. Guaraní greetings, red earth, forest greens and the ñandutí motif carry the identity. The national tricolor appears only as the thin `FlagRule`.
 - **Reuse components** in `src/components/` before creating new ones.
 - **Client components only for real interactivity.** Current ones: header scroll state, nav, mobile menu, destination filters, lightbox, hero video, timeline controls, hash opener. Essential content must work without JS.
 
@@ -33,7 +33,7 @@ A cinematic website all about Paraguay, made as a university project for **Unite
 - **Hero video:** the home hero video is a silent loop. It only loads on larger screens without reduced motion or data saver, and it has a pause button.
 
 ## Design system (`src/app/globals.css`)
-- **Look:** dark-first and cinematic: `night` surfaces for images, `paper`/`sand` bands for reading. Wrap content in `<Section tone="night|night-2|paper|sand">`.
+- **Look:** dark-first and cinematic: forest-green `night` surfaces for images, `paper`/`sand` bands for reading, and a red-earth (`tierra`) accent. Wrap content in `<Section tone="night|night-2|paper|sand">`.
 - **Colors:** use tone-aware tokens only: `text-fg`, `text-muted`, `text-accent`, `bg-surface`, `border-line`. Tailwind's default palette is disabled.
 - **Fonts:** `font-serif` (Newsreader) for headings and prose. `font-sans` (Inter) and `.eyebrow` for UI.
 - **Motion:** CSS only (`motion-safe:animate-rise`, `.reveal`, `animate-settle`), and it must respect reduced motion.

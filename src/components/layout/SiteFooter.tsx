@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { footerNav, mainNav, site } from "@/data/site";
+import { FlagRule } from "@/components/ui/FlagRule";
 import { Ornament } from "@/components/ui/Ornament";
 import { formatReviewed } from "@/lib/date";
 import { Container } from "./Container";
 
 export function SiteFooter() {
   return (
-    <footer className="tone-night-2 border-t border-line pt-section-sm pb-10">
-      <Container size="wide">
+    <footer className="tone-night-2 pb-10">
+      <FlagRule />
+      <Container size="wide" className="pt-section-sm">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Link href="/" className="inline-flex items-center gap-3">
@@ -52,7 +54,7 @@ export function SiteFooter() {
             {formatReviewed(site.lastReviewed)}. Always check official sources before you travel.
           </p>
           <p className="lg:col-span-5 lg:text-right">
-            A university project for {site.occasion}. Not affiliated with the United Nations or any government.
+            An independent student project about Paraguay. Not affiliated with any government.
           </p>
         </div>
       </Container>
