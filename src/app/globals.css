@@ -1,0 +1,316 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens. Tailwind's default palette is disabled on purpose:
+   only brand colors exist. Contrast ratios: docs/architecture.md §6.2
+   ------------------------------------------------------------------ */
+@theme {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Dark, cinematic surfaces */
+  --color-night: #0d110f;
+  --color-night-2: #151a17;
+  --color-cream: #efe8da;
+  --color-mist: #a8a092;
+
+  /* Light reading surfaces */
+  --color-paper: #f4eee3;
+  --color-sand: #e9e0d0;
+  --color-ink: #17150f;
+  --color-stone: #595147;
+  --color-rule: #d5cab7;
+
+  /* Accents: red earth, forest, river. Light variants are for dark surfaces. */
+  --color-tierra: #9a3a1f;
+  --color-tierra-deep: #7a2c16;
+  --color-tierra-light: #e08a68;
+  --color-monte: #22402f;
+  --color-monte-light: #9cc2a5;
+  --color-rio: #2a5664;
+  --color-rio-light: #8db6c2;
+  --color-ocre: #b9832f; /* decorative only on light surfaces */
+  --color-ocre-light: #d8a657;
+  --color-lapacho: #c9577a; /* decorative only */
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1rem;
+  --text-base--line-height: 1.6;
+  --text-body: clamp(1.0625rem, 1.02rem + 0.2vw, 1.1875rem);
+  --text-body--line-height: 1.68;
+  --text-lg: clamp(1.1875rem, 1.1rem + 0.35vw, 1.375rem);
+  --text-lg--line-height: 1.55;
+  --text-xl: clamp(1.375rem, 1.2rem + 0.6vw, 1.625rem);
+  --text-xl--line-height: 1.3;
+  --text-2xl: clamp(1.625rem, 1.35rem + 1.2vw, 2.25rem);
+  --text-2xl--line-height: 1.18;
+  --text-3xl: clamp(2rem, 1.5rem + 2.1vw, 3.25rem);
+  --text-3xl--line-height: 1.08;
+  --text-4xl: clamp(2.5rem, 1.6rem + 3.8vw, 4.75rem);
+  --text-4xl--line-height: 1.02;
+  --text-display: clamp(3rem, 1.4rem + 7vw, 8.5rem);
+  --text-display--line-height: 0.94;
+
+  --spacing-gutter: clamp(1rem, 0.4rem + 2.6vw, 2.75rem);
+  --spacing-section: clamp(4.5rem, 2.8rem + 7vw, 10rem);
+  --spacing-section-sm: clamp(3rem, 2rem + 3.5vw, 5.5rem);
+  --spacing-header: 4.25rem;
+
+  --container-prose: 42rem;
+  --container-content: 76rem;
+  --container-wide: 94rem;
+
+  --ease-cinema: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --animate-rise: rise 1s var(--ease-cinema) both;
+  --animate-fade: fade 1.2s var(--ease-cinema) both;
+  --animate-settle: settle 2.6s var(--ease-cinema) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes settle {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+}
+
+/* Fonts come from next/font CSS variables set on <html>; tone colors resolve per section. */
+@theme inline {
+  --font-serif: var(--font-newsreader), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+}
+
+/* ------------------------------------------------------------------
+   Tones: a Section sets one; components use text-fg / text-muted /
+   text-accent / border-line / bg-surface and adapt automatically.
+   ------------------------------------------------------------------ */
+@layer base {
+  :root,
+  .tone-night {
+    --surface: var(--color-night);
+    --fg: var(--color-cream);
+    --muted: var(--color-mist);
+    --accent: var(--color-ocre-light);
+    --link: var(--color-tierra-light);
+    --line: rgb(239 232 218 / 0.16);
+  }
+  .tone-night-2 {
+    --surface: var(--color-night-2);
+    --fg: var(--color-cream);
+    --muted: var(--color-mist);
+    --accent: var(--color-ocre-light);
+    --link: var(--color-tierra-light);
+    --line: rgb(239 232 218 / 0.16);
+  }
+  .tone-paper {
+    --surface: var(--color-paper);
+    --fg: var(--color-ink);
+    --muted: var(--color-stone);
+    --accent: var(--color-tierra);
+    --link: var(--color-tierra);
+    --line: var(--color-rule);
+  }
+  .tone-sand {
+    --surface: var(--color-sand);
+    --fg: var(--color-ink);
+    --muted: var(--color-stone);
+    --accent: var(--color-tierra);
+    --link: var(--color-tierra);
+    --line: #cdbfa8;
+  }
+  .tone-night,
+  .tone-night-2,
+  .tone-paper,
+  .tone-sand {
+    background-color: var(--surface);
+    color: var(--fg);
+  }
+
+  html {
+    background-color: var(--color-night);
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  .tone-paper,
+  .tone-sand {
+    color-scheme: light;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    font-family: var(--font-serif);
+    background-color: var(--surface);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p,
+  li,
+  dd,
+  figcaption {
+    text-wrap: pretty;
+  }
+
+  :target,
+  [id] {
+    scroll-margin-top: calc(var(--spacing-header) + 1.5rem);
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-ocre-light);
+    color: var(--color-night);
+  }
+
+  /* Lock page scroll while a modal <dialog> is open */
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
+  }
+
+  [lang="gn"],
+  [lang="es"] {
+    font-style: italic;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Editorial components
+   ------------------------------------------------------------------ */
+@layer components {
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Long-form reading text */
+  .prose-editorial {
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+  .prose-editorial > * + * {
+    margin-top: 1.1em;
+  }
+  .prose-editorial a,
+  .link {
+    color: var(--link);
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in oklab, var(--link) 45%, transparent);
+    transition: text-decoration-color 200ms ease;
+  }
+  .prose-editorial a:hover,
+  .link:hover {
+    text-decoration-color: var(--link);
+  }
+  .prose-editorial strong {
+    font-weight: 600;
+  }
+
+  .dropcap::first-letter {
+    float: left;
+    font-family: var(--font-serif);
+    font-size: 4.1em;
+    line-height: 0.82;
+    padding: 0.08em 0.1em 0 0;
+    color: var(--accent);
+  }
+
+  /* Film grain for cinematic frames: static, very subtle */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.09;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Hairline rule with a centered ñandutí-style mark handled in markup */
+  .rule {
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Motion. Content is always visible without animation support.
+   ------------------------------------------------------------------ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 28%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

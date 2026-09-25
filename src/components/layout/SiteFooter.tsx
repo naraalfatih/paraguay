@@ -1,0 +1,69 @@
+import Link from "next/link";
+import { footerNav, mainNav, site } from "@/data/site";
+import { Ornament } from "@/components/ui/Ornament";
+import { Container } from "./Container";
+
+export function SiteFooter() {
+  return (
+    <footer className="tone-night-2 border-t border-line pt-section-sm pb-10">
+      <Container size="wide">
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <Link href="/" className="inline-flex items-center gap-3">
+              <Ornament className="size-10 text-accent" />
+              <span className="font-serif text-4xl">Paraguay</span>
+            </Link>
+            <p className="mt-5 max-w-sm text-lg text-muted">{site.tagline}.</p>
+          </div>
+
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-7">
+            <div className="col-span-2">
+              <h2 className="eyebrow text-muted">Explore</h2>
+              <ul className="mt-4 grid grid-cols-1 gap-x-8 sm:grid-cols-2">
+                {mainNav.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="inline-flex min-h-11 items-center text-lg hover:text-accent">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="eyebrow text-muted">This guide</h2>
+              <ul className="mt-4">
+                {footerNav.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="inline-flex min-h-11 items-center text-lg hover:text-accent">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <div className="mt-16 grid gap-4 border-t border-line pt-8 font-sans text-sm text-muted lg:grid-cols-12">
+          <p className="lg:col-span-7">
+            Images on this site are AI-generated illustrations of Paraguayan landscapes, food and crafts. They are not
+            photographs of specific places. Practical information was last reviewed in{" "}
+            {formatReviewed(site.lastReviewed)}. Always check official sources before you travel.
+          </p>
+          <p className="lg:col-span-5 lg:text-right">
+            © {new Date().getFullYear()} {site.title}. Independent guide, not affiliated with any government agency.
+          </p>
+        </div>
+      </Container>
+    </footer>
+  );
+}
+
+export function formatReviewed(yyyyMm: string) {
+  const [y, m] = yyyyMm.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
